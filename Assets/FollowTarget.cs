@@ -6,15 +6,11 @@ public class FollowTarget : MonoBehaviour
 {
     public Transform target;
     public float smoothness = 0.1f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Vector3 offset;
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.Lerp(transform.position, target.position, smoothness);
+        transform.position = Vector3.Lerp(transform.position, target.position + offset, smoothness);
     }
 }

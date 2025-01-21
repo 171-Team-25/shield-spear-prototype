@@ -8,7 +8,7 @@ public class Movement : MonoBehaviour
     [SerializeField] Rigidbody body;
     [SerializeField] int speed = 1;
     [SerializeField] SphereCollider maxDistanceFromDefense;
-    [SerializeField] Camera offenseCamera;
+    [SerializeField] public Camera offenseCamera;
     // Start is called before the first frame update
     void Start()
     {
