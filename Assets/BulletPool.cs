@@ -34,6 +34,11 @@ public class BulletPool : MonoBehaviour
             if (bulletBehavior != null) {
                 bulletBehavior.SetPool(this);
             }
+            CurrentTeam currentTeam = bullet.GetComponent<CurrentTeam>();
+            CurrentTeam launchersTeam = transform.parent.gameObject.GetComponent<CurrentTeam>();
+            if (currentTeam != null && launchersTeam != null) {
+                currentTeam.CurrentTeamOn = launchersTeam.CurrentTeamOn;
+            }
             bulletPool[i] = bullet;
         }
     }

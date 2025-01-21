@@ -12,7 +12,7 @@ public class ProjectileLauncher : MonoBehaviour
     void Start()
     {
         _fireCooldown = 0;
-        GameObject bulletManager = GameObject.Find("OffenseBulletPool");
+        GameObject bulletManager = transform.Find("OffenseBulletPool").gameObject;
         if (bulletManager != null) {
             bulletPool = bulletManager.GetComponent<BulletPool>();
         }
