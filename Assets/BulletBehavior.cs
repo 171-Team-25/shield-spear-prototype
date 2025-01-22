@@ -41,10 +41,10 @@ public class BulletBehavior : MonoBehaviour
                     break;
                 }
                 resetBullet();
-                if(other.CompareTag("Enemy")) {
+                if(other.CompareTag("Enemy") || other.CompareTag("Shield")) {
                     Health enemyHealth = other.gameObject.GetComponent<Health>();
                     if (enemyHealth != null) {
-                        enemyHealth.health -= 50;
+                        enemyHealth.currentHealth -= 50;
                     }
                 }
                 break;

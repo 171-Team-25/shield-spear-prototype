@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using Unity.VisualScripting;
+using UnityEngine.InputSystem;
 
 public class MeleeAttack : MonoBehaviour
 {
@@ -18,20 +20,27 @@ public class MeleeAttack : MonoBehaviour
     private Stack<GameObject> hitEntities = new Stack<GameObject>();
     private GameObject visualizer;
     private float visualizerLength;
+    private PlayerInput _playerInput;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        _playerInput = transform.parent.gameObject.GetComponent<PlayerInput>();
         visualizer = transform.Find("MeleeVisual").gameObject;
         meleeCooldown = 0;
         meleeCollider = this.GetComponent<CapsuleCollider>();
+        if (_playerInput == null) {
+            Debug.Log("Defense has no input");
+        } else {
+            Debug.Log("Defense has input");
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (meleeCooldown <= 0 && Input.GetMouseButtonDown(1)) {
+        if (meleeCooldown <= 0 && _playerInput.actions["Attack"].ReadValue<float>() > 0) {
             isMeleeing = true;
             meleeCooldown = meleeRate;
             meleeTimer = 0;
@@ -66,7 +75,7 @@ public class MeleeAttack : MonoBehaviour
             if (enemyNotYetHit) {
                 Health enemyHealth = other.gameObject.GetComponent<Health>();
                 if (enemyHealth != null) {
-                    enemyHealth.health -= 50;
+                    enemyHealth.currentHealth -= 50;
                 }
                 hitEntities.Push(other.gameObject);
             } 

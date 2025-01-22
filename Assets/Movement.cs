@@ -17,6 +17,9 @@ public class Movement : MonoBehaviour
     {
         body = GetComponent<Rigidbody>();
         _playerInput = GetComponent<PlayerInput>();
+        if (_playerInput == null) {
+            Debug.Log("no player input");
+        }
     }
 
     // Update is called once per frame

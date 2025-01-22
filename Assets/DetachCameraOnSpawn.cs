@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class DetachCameraOnSpawn : MonoBehaviour
 {
-    public GameObject camera;
+    public GameObject targetCamera;
     // Start is called before the first frame update
     void Start()
     {
-        if (camera == null)
+        if (targetCamera == null)
         {
             Debug.LogWarning("No camera assigned to DetachCameraOnSpawn");
             return;
         }
-        camera.transform.SetParent(null, true);
+        targetCamera.transform.SetParent(null, true);
     }
 }
