@@ -1,19 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class CurrentTeam : MonoBehaviour
 {
-    public int CurrentTeamOn;
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private int currentTeam;
+    public int Team
     {
-        
+        get => currentTeam;
+        set
+        {
+            if (value == currentTeam) return;
+            currentTeam = value;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    // Start is called before the first frame update
+    public void Start()
     {
-        
+        Team = currentTeam;
     }
 }

@@ -37,7 +37,7 @@ public class BulletPool : MonoBehaviour
             CurrentTeam currentTeam = bullet.GetComponent<CurrentTeam>();
             CurrentTeam launchersTeam = transform.parent.gameObject.GetComponent<CurrentTeam>();
             if (currentTeam != null && launchersTeam != null) {
-                currentTeam.CurrentTeamOn = launchersTeam.CurrentTeamOn;
+                currentTeam.Team = launchersTeam.Team;
             }
             bulletPool[i] = bullet;
         }

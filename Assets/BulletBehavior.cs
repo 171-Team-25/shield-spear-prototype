@@ -24,7 +24,7 @@ public class BulletBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        transform.Translate(Vector3.forward * (speed * Time.deltaTime));
 
         _lifeTimer -= Time.deltaTime;
 
@@ -36,7 +36,7 @@ public class BulletBehavior : MonoBehaviour
         for (int i = 0; i < TagsOfBulletReseters.Length; i++) {
             if (other.CompareTag(TagsOfBulletReseters[i])) {
                 CurrentTeam hasTeam = other.gameObject.GetComponent<CurrentTeam>();
-                if (hasTeam != null && hasTeam.CurrentTeamOn == this.gameObject.GetComponent<CurrentTeam>().CurrentTeamOn) {
+                if (hasTeam != null && hasTeam.Team == this.gameObject.GetComponent<CurrentTeam>().Team) {
                     //if the bullet hits something on another team
                     break;
                 }

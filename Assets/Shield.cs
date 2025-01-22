@@ -24,7 +24,7 @@ public class Shield : MonoBehaviour
         CurrentTeam shieldbearersTeam = transform.parent.gameObject.GetComponent<CurrentTeam>();
         CurrentTeam shieldsTeam = this.GetComponent<CurrentTeam>();
         if (shieldbearersTeam != null && shieldsTeam != null) {
-            shieldsTeam.CurrentTeamOn = shieldbearersTeam.CurrentTeamOn;
+            shieldsTeam.Team = shieldbearersTeam.Team;
         }
     }
 

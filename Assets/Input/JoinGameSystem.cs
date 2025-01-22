@@ -8,7 +8,7 @@ public class JoinGameSystem : MonoBehaviour
     // Player Prefabs
     public GameObject offensePrefab;
     public GameObject defensePrefab;
-
+    public bool fillTeamsInOrder = true;
     private void Start()
     {
         
@@ -21,7 +21,6 @@ public class JoinGameSystem : MonoBehaviour
 
     private void OnJoinInput(InputAction.CallbackContext ctx)
     {
-        var team = (_playerInputManager.playerCount + 1) % 2;
         // Alternate player prefabs to spawn to create balanced teams
         if (_playerInputManager.playerCount % 2 == 0)
         {
@@ -33,15 +32,22 @@ public class JoinGameSystem : MonoBehaviour
         }
 
         _playerInputManager.JoinPlayer(pairWithDevice: ctx.control.device);
-        Debug.Log("Player " + _playerInputManager.playerCount + " has joined on team " + team);
     }
     
     private void OnPlayerJoined(PlayerInput obj)
     {
-        if (_playerInputManager == null) {
-            _playerInputManager = GetComponent<PlayerInputManager>();
+        var playerCount = _playerInputManager.playerCount;
+        var teamSize = _playerInputManager.maxPlayerCount / 2;
+        var team = fillTeamsInOrder ? (playerCount > teamSize ? 2 : 1) : (playerCount + 1) % 2 + 1;
+        Debug.Log("Player " + _playerInputManager.playerCount + " has joined on team " + team);
+        if (obj.gameObject.TryGetComponent<CurrentTeam>(out var currentTeam))
+        {
+            currentTeam.Team = team;
         }
-        var team = (_playerInputManager.playerCount + 1) % 2;
+        else
+        {
+            Debug.LogError("No CurrentTeam Component Found on " + obj.gameObject.name);
+        }
         if (_playerInputManager.playerCount % 2 == 0)
         {
             // Offense Spawn Logic

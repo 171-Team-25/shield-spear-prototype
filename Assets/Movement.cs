@@ -50,12 +50,13 @@ public class Movement : MonoBehaviour
     }
 
     Vector3 ClampToDefense(Vector3 newPosition) {
-        Vector3 defenseCenter = maxDistanceFromDefense.transform.position;
-        Vector3 fromDefenseCenter = newPosition - defenseCenter;
-        if (fromDefenseCenter.magnitude > maxDistanceFromDefense.radius) {
-            fromDefenseCenter.Normalize();
-            newPosition = defenseCenter + fromDefenseCenter * maxDistanceFromDefense.radius;
-        }
-        return newPosition;
+        // Vector3 defenseCenter = maxDistanceFromDefense.transform.position;
+        // Vector3 fromDefenseCenter = newPosition - defenseCenter;
+        // if (fromDefenseCenter.magnitude > maxDistanceFromDefense.radius) {
+        //     fromDefenseCenter.Normalize();
+        //     newPosition = defenseCenter + fromDefenseCenter * maxDistanceFromDefense.radius;
+        // }
+        // return newPosition;
+        return transform.position;
     }
 }
