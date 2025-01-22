@@ -11,6 +11,7 @@ public class JoinGameSystem : MonoBehaviour
 
     private void Start()
     {
+        
         _playerInputManager = GetComponent<PlayerInputManager>();
         _playerInputManager.onPlayerJoined += OnPlayerJoined;
         _playerInputMap = new PlayerInputMap();
@@ -37,6 +38,9 @@ public class JoinGameSystem : MonoBehaviour
     
     private void OnPlayerJoined(PlayerInput obj)
     {
+        if (_playerInputManager == null) {
+            _playerInputManager = GetComponent<PlayerInputManager>();
+        }
         var team = (_playerInputManager.playerCount + 1) % 2;
         if (_playerInputManager.playerCount % 2 == 0)
         {
