@@ -14,7 +14,7 @@ public class BulletBehavior : MonoBehaviour
 
     private BulletPool bulletPool;
 
-    private string[] TagsOfBulletReseters = {"Defense", "Enemy"};
+    private string[] TagsOfBulletReseters = {"Offense", "Defense", "Enemy", "Shield"};
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +35,11 @@ public class BulletBehavior : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         for (int i = 0; i < TagsOfBulletReseters.Length; i++) {
             if (other.CompareTag(TagsOfBulletReseters[i])) {
+                CurrentTeam hasTeam = other.gameObject.GetComponent<CurrentTeam>();
+                if (hasTeam != null && hasTeam.CurrentTeamOn == this.gameObject.GetComponent<CurrentTeam>().CurrentTeamOn) {
+                    //if the bullet hits something on another team
+                    break;
+                }
                 resetBullet();
                 if(other.CompareTag("Enemy")) {
                     Health enemyHealth = other.gameObject.GetComponent<Health>();

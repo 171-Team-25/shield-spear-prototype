@@ -8,6 +8,7 @@ TagManager:
   - Defense
   - Enemy
   - Ground
+  - Shield
   layers:
   - Default
   - TransparentFX
