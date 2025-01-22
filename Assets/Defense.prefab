@@ -480,7 +480,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Play1
+  m_DefaultActionMap: 5ca2c24c-31e1-445f-9a2c-020e369cd94f
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 8507331562549773993}
 --- !u!114 &2951129916689970816
@@ -495,7 +495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16b20b1f89166e5429c08c2ca4ae075a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetCamera: {fileID: 0}
+  targetCamera: {fileID: 3043313254614478690}
 --- !u!114 &8785416242562424027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -751,6 +751,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f136ec646590c642a5ee8cd2db05ae5, type: 3}
+--- !u!1 &3043313254614478690 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3371347746856172167, guid: 8f136ec646590c642a5ee8cd2db05ae5, type: 3}
+  m_PrefabInstance: {fileID: 357310140650903013}
+  m_PrefabAsset: {fileID: 0}
 --- !u!20 &8507331562549773993 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 8279154698894431052, guid: 8f136ec646590c642a5ee8cd2db05ae5, type: 3}

@@ -50,6 +50,7 @@ public class JoinGameSystem : MonoBehaviour
         {
             // Defense Spawn Logic
         }
-
+        // Assumes that the player is spawned and play should start immediately
+        obj.SwitchCurrentActionMap("Play");
     }
 }

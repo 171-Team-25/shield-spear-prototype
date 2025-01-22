@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e63c23f8dbdbbc4faa1fc3a0bb790d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  body: {fileID: 0}
+  body: {fileID: 901862705779412091}
   speed: 10
   maxDistanceFromDefense: {fileID: 0}
   offenseCamera: {fileID: 3247215931657086225}
@@ -246,7 +246,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Play
+  m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 3247215931657086225}
 --- !u!114 &6678942266546879203
@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16b20b1f89166e5429c08c2ca4ae075a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetCamera: {fileID: 0}
+  targetCamera: {fileID: 8159524253715123418}
 --- !u!114 &1127364197736806260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,5 +344,10 @@ Transform:
 --- !u!20 &3247215931657086225 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 8279154698894431052, guid: 8f136ec646590c642a5ee8cd2db05ae5, type: 3}
+  m_PrefabInstance: {fileID: 6914462464066401885}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8159524253715123418 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3371347746856172167, guid: 8f136ec646590c642a5ee8cd2db05ae5, type: 3}
   m_PrefabInstance: {fileID: 6914462464066401885}
   m_PrefabAsset: {fileID: 0}
