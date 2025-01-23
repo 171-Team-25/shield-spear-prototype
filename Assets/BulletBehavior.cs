@@ -14,7 +14,7 @@ public class BulletBehavior : MonoBehaviour
 
     private BulletPool bulletPool;
 
-    private string[] TagsOfBulletReseters = {"Offense", "Defense", "Enemy", "Shield"};
+    private string[] TagsOfBulletReseters = {"Offense", "Defense", "Enemy", "Shield", "BoostWall"};
     // Start is called before the first frame update
     void Start()
     {
