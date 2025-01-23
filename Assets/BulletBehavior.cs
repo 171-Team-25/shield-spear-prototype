@@ -8,16 +8,21 @@ public class BulletBehavior : MonoBehaviour
 {
     [SerializeField]
     public float speed = 10f;
+    private float baseSpeed;
     public float lifeTime = 2f;
 
     private float _lifeTimer;
 
     private BulletPool bulletPool;
+    public int damage = 50;
+    private int baseDamage;
 
     private string[] TagsOfBulletReseters = {"Offense", "Defense", "Enemy", "Shield", "BoostWall"};
     // Start is called before the first frame update
     void Start()
     {
+        baseDamage = damage;
+        baseSpeed = speed;
         _lifeTimer = lifeTime;
     }
 
@@ -37,14 +42,18 @@ public class BulletBehavior : MonoBehaviour
             if (other.CompareTag(TagsOfBulletReseters[i])) {
                 CurrentTeam hasTeam = other.gameObject.GetComponent<CurrentTeam>();
                 if (hasTeam != null && hasTeam.Team == this.gameObject.GetComponent<CurrentTeam>().Team) {
-                    //if the bullet hits something on another team
+                    //if the bullet hits something on same team
+                    if (other.CompareTag("BoostWall")) {
+                        speed *= 4;
+                        damage *= 2;
+                    }
                     break;
                 }
                 resetBullet();
                 if(other.CompareTag("Enemy") || other.CompareTag("Shield")) {
                     Health enemyHealth = other.gameObject.GetComponent<Health>();
                     if (enemyHealth != null) {
-                        enemyHealth.currentHealth -= 50;
+                        enemyHealth.currentHealth -= damage;
                     }
                 }
                 break;
@@ -55,6 +64,8 @@ public class BulletBehavior : MonoBehaviour
     private void resetBullet() {
         bulletPool.ReturnBullet(gameObject);
         _lifeTimer = lifeTime;
+        speed = baseSpeed;
+        damage = baseDamage;
     }
 
     public void SetPool(BulletPool pool) {
