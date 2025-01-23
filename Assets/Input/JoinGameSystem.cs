@@ -1,14 +1,18 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
 
 public class JoinGameSystem : MonoBehaviour
 {
     private PlayerInputManager _playerInputManager;
     private PlayerInputMap _playerInputMap;
+    public List<PlayerInput> playerInputs;
+    public bool fillTeamsInOrder = true;
     // Player Prefabs
     public GameObject offensePrefab;
     public GameObject defensePrefab;
-    public bool fillTeamsInOrder = true;
     private void Start()
     {
         
@@ -30,23 +34,35 @@ public class JoinGameSystem : MonoBehaviour
         {
             _playerInputManager.playerPrefab = defensePrefab;
         }
-
-        _playerInputManager.JoinPlayer(pairWithDevice: ctx.control.device);
+        if (ctx.control.device.name == "Keyboard" && _playerInputManager.playerCount < _playerInputManager.maxPlayerCount)
+            Instantiate(_playerInputManager.playerPrefab);
+        else
+            _playerInputManager.JoinPlayer(pairWithDevice: ctx.control.device);
     }
     
-    private void OnPlayerJoined(PlayerInput obj)
+    private void OnPlayerJoined(PlayerInput playerInput)
     {
+        Debug.Log(playerInput);
+        if (playerInput.devices.Count == 0)
+        {
+            Debug.Log("No Device Bound. Binding to keyboard.");
+            var user = playerInputs.FirstOrDefault().user;
+            var device = user.pairedDevices.FirstOrDefault();
+            InputUser.PerformPairingWithDevice(device, user);
+        }
+
+        playerInputs.Add(playerInput);
         var playerCount = _playerInputManager.playerCount;
         var teamSize = _playerInputManager.maxPlayerCount / 2;
         var team = fillTeamsInOrder ? (playerCount > teamSize ? 2 : 1) : (playerCount + 1) % 2 + 1;
         Debug.Log("Player " + _playerInputManager.playerCount + " has joined on team " + team);
-        if (obj.gameObject.TryGetComponent<CurrentTeam>(out var currentTeam))
+        if (playerInput.gameObject.TryGetComponent<CurrentTeam>(out var currentTeam))
         {
             currentTeam.Team = team;
         }
         else
         {
-            Debug.LogError("No CurrentTeam Component Found on " + obj.gameObject.name);
+            Debug.LogError("No CurrentTeam Component Found on " + playerInput.gameObject.name);
         }
         if (_playerInputManager.playerCount % 2 == 0)
         {
@@ -57,6 +73,7 @@ public class JoinGameSystem : MonoBehaviour
             // Defense Spawn Logic
         }
         // Assumes that the player is spawned and play should start immediately
-        obj.SwitchCurrentActionMap("Play");
+        playerInput.SwitchCurrentActionMap("Play");
+        Debug.Log(playerInput.currentActionMap.name);
     }
 }
