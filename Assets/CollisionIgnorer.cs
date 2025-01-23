@@ -6,8 +6,12 @@ using UnityEngine;
 
 public class CollisionIgnorer : MonoBehaviour
 {
+    private LayerMask _defaultLayerMask;
+    private int _defaultLayer;
+    private Collider[] _colliders;
     public void Start()
     {
+        _colliders = GetComponents<Collider>();
         if (TryGetComponent<CurrentTeam>(out var currentTeam))
         {
             OnTeamChanged(currentTeam.Team, currentTeam.Team == 1 ? 2 : 1);
@@ -25,12 +29,31 @@ public class CollisionIgnorer : MonoBehaviour
         if (gameObject.CompareTag("Defense") || gameObject.CompareTag("Offense"))
         {
             var layer = LayerMask.NameToLayer($"Team{team} Player");
-            var oldLayer = LayerMask.GetMask($"Team{previousTeam} Player");
+            _defaultLayerMask = LayerMask.GetMask(LayerMask.LayerToName(layer));
+            _defaultLayer = layer;
             gameObject.layer = layer;
-            var collider = gameObject.GetComponent<Collider>();
-            var excludedLayers = collider.excludeLayers;
-            //collider.excludeLayers &= ~oldLayer;
-            collider.excludeLayers |= 1 << layer;
+            foreach (var collider in _colliders)
+            {
+                collider.excludeLayers |= 1 << layer;
+            }
         }
+    }
+
+    public void IgnoreAllPlayers()
+    {
+        foreach (var collider in _colliders)
+        {
+            collider.excludeLayers |= 1 << LayerMask.NameToLayer($"Team1 Player");
+            collider.excludeLayers |= 1 << LayerMask.NameToLayer($"Team2 Player");
+        }
+    }
+
+    public void ResetToDefault()
+    {
+        gameObject.layer = _defaultLayer;
+        foreach (var collider in _colliders)
+        {
+            collider.excludeLayers = _defaultLayerMask;
+        }    
     }
 }
