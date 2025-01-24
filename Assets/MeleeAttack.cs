@@ -17,10 +17,12 @@ public class MeleeAttack : MonoBehaviour
     private bool isMeleeing = false;
     [SerializeField] float durationTillFull = 3f;
     [SerializeField] float durationTillEnd = 4f;
-    private Stack<GameObject> hitEntities = new Stack<GameObject>();
+    private List<GameObject> hitEntities = new List<GameObject>();
     private GameObject visualizer;
     private float visualizerLength;
     private PlayerInput _playerInput;
+    private string[] TagsOfHittables = {"Offense", "Defense", "Enemy", "Shield"};
+
 
 
     // Start is called before the first frame update
@@ -53,8 +55,8 @@ public class MeleeAttack : MonoBehaviour
                 isMeleeing = false;
                 newHeight = 0;
                 visualizerLength = 0.5f;
-                while (hitEntities.Count > 0) {
-                    hitEntities.Pop();
+                if (hitEntities.Count > 0) {
+                    hitEntities.Clear();
                 }
             }
         }
@@ -65,21 +67,23 @@ public class MeleeAttack : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        if(isMeleeing && other.CompareTag("Enemy")) {
-            bool enemyNotYetHit = true;
-            foreach (GameObject entity in hitEntities) {
-                if (entity == other.gameObject) {
-                    enemyNotYetHit = false;
+        for (int i = 0; i < TagsOfHittables.Length; i++) {
+                                                Debug.Log("hit " + other.gameObject);
+
+            if(isMeleeing && other.CompareTag(TagsOfHittables[i])) {
+                CurrentTeam hasTeam = other.gameObject.GetComponent<CurrentTeam>();
+                if (other.CompareTag("Enemy") || (hasTeam != null && hasTeam.Team != transform.parent.gameObject.GetComponent<CurrentTeam>().Team)) {
+                    if (!hitEntities.Contains(other.gameObject)) {
+                        Health enemyHealth = other.gameObject.GetComponent<Health>();
+                        if (enemyHealth != null) {
+                            enemyHealth.takeDamage(50);
+                        }
+                        hitEntities.Add(other.gameObject);
+                    } 
                 }
             }
-            if (enemyNotYetHit) {
-                Health enemyHealth = other.gameObject.GetComponent<Health>();
-                if (enemyHealth != null) {
-                    enemyHealth.currentHealth -= 50;
-                }
-                hitEntities.Push(other.gameObject);
-            } 
         }
+        
     }
 
 }

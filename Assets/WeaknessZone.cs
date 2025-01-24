@@ -13,6 +13,8 @@ public class WeaknessZone : MonoBehaviour
     private bool zoneReady = true;
     private GameObject zoneOwner;
     private List<GameObject> hitEntities = new List<GameObject>();
+    private string[] TagsOfHittables = {"Offense", "Defense", "Enemy"};
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,25 +58,36 @@ public class WeaknessZone : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (other.CompareTag("Enemy")) {
-            Health enemyHealth = other.gameObject.GetComponent<Health>();
-            if (enemyHealth != null && !enemyHealth.IsWeakened) {
-                if(!hitEntities.Contains(other.gameObject)) {
-                    hitEntities.Add(other.gameObject);
+        for (int i = 0; i < TagsOfHittables.Length; i++) {
+            if (other.CompareTag(TagsOfHittables[i])) {
+                CurrentTeam hasTeam = other.gameObject.GetComponent<CurrentTeam>();
+                if ((hasTeam != null && hasTeam.Team != this.gameObject.GetComponent<CurrentTeam>().Team) || other.CompareTag("Enemy")) {
+                    Health enemyHealth = other.gameObject.GetComponent<Health>();
+                    if (enemyHealth != null && !enemyHealth.IsWeakened) {
+                        if(!hitEntities.Contains(other.gameObject)) {
+                            hitEntities.Add(other.gameObject);
+                        }
+                        enemyHealth.IsWeakened = true;
+                    }
                 }
-                enemyHealth.IsWeakened = true;
             }
-        }   
+        }  
     }
+
     private void OnTriggerExit(Collider other) {
-        if (other.CompareTag("Enemy")) {
-            Health enemyHealth = other.gameObject.GetComponent<Health>();
-            if (enemyHealth != null && enemyHealth.IsWeakened) {
-                if(hitEntities.Contains(other.gameObject)) {
-                    hitEntities.Remove(other.gameObject);
+        for (int i = 0; i < TagsOfHittables.Length; i++) {
+            if (other.CompareTag(TagsOfHittables[i])) {
+                CurrentTeam hasTeam = other.gameObject.GetComponent<CurrentTeam>();
+                if ((hasTeam != null && hasTeam.Team != this.gameObject.GetComponent<CurrentTeam>().Team) || other.CompareTag("Enemy")) {
+                    Health enemyHealth = other.gameObject.GetComponent<Health>();
+                    if (enemyHealth != null && enemyHealth.IsWeakened) {
+                        if(hitEntities.Contains(other.gameObject)) {
+                            hitEntities.Remove(other.gameObject);
+                        }
+                        enemyHealth.IsWeakened = false;
+                    }
                 }
-                enemyHealth.IsWeakened = false;
             }
-        }   
+        }  
     }
 }

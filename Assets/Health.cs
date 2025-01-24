@@ -27,7 +27,7 @@ public class Health : MonoBehaviour
         if (IsWeakened) {
             damage = (int)(damage * 1.5f);
         }
-        Debug.Log("takes " + damage + "damage");
+        Debug.Log(this + "takes " + damage + " damage");
         currentHealth -= damage;
     }
 }

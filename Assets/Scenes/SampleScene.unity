@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3528d6a9e304af74d8164dfd6a125cfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHealth: 100
+  baseHealth: 500
   currentHealth: 0
   IsWeakened: 0
 --- !u!1 &705507993
