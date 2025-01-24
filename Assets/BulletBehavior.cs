@@ -53,7 +53,7 @@ public class BulletBehavior : MonoBehaviour
                 if(other.CompareTag("Enemy") || other.CompareTag("Shield")) {
                     Health enemyHealth = other.gameObject.GetComponent<Health>();
                     if (enemyHealth != null) {
-                        enemyHealth.currentHealth -= damage;
+                        enemyHealth.takeDamage(damage);
                     }
                 }
                 break;
