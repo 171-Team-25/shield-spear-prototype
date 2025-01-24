@@ -61,11 +61,27 @@ public class KnockbackPunch : MonoBehaviour
                 }
             }
             knockbackCollider.height = newHeight;
-        transform.localPosition = new Vector3(0, 0, newHeight);
-        visualizer.transform.localScale = new Vector3(1, visualizerLength, 1);
+            transform.localPosition = new Vector3(0, 0, newHeight);
+            visualizer.transform.localScale = new Vector3(1, visualizerLength, 1);
         }
         if (!isKnockbacking && charge <= 0) {
             knockbackCooldown -= Time.deltaTime;
+        } 
+    }
+    private void OnTriggerEnter(Collider other) {
+        for (int i = 0; i < TagsOfHittables.Length; i++) {
+            if(isKnockbacking && other.CompareTag(TagsOfHittables[i])) {
+                CurrentTeam hasTeam = other.gameObject.GetComponent<CurrentTeam>();
+                if (other.CompareTag("Enemy") || (hasTeam != null && hasTeam.Team != transform.parent.gameObject.GetComponent<CurrentTeam>().Team)) {
+                    if (!hitEntities.Contains(other.gameObject)) {
+                        Rigidbody enemyRB= other.gameObject.GetComponent<Rigidbody>();
+                        if (enemyRB != null) {
+                            enemyRB.AddForce(transform.parent.transform.forward * ((charge * 5) + 5),ForceMode.Impulse);
+                        }
+                        hitEntities.Add(other.gameObject);
+                    } 
+                }
+            }
         }
         
     }
