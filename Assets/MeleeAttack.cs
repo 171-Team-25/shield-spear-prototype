@@ -23,8 +23,6 @@ public class MeleeAttack : MonoBehaviour
     private PlayerInput _playerInput;
     private string[] TagsOfHittables = {"Offense", "Defense", "Enemy", "Shield"};
 
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -68,8 +66,6 @@ public class MeleeAttack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         for (int i = 0; i < TagsOfHittables.Length; i++) {
-                                                Debug.Log("hit " + other.gameObject);
-
             if(isMeleeing && other.CompareTag(TagsOfHittables[i])) {
                 CurrentTeam hasTeam = other.gameObject.GetComponent<CurrentTeam>();
                 if (other.CompareTag("Enemy") || (hasTeam != null && hasTeam.Team != transform.parent.gameObject.GetComponent<CurrentTeam>().Team)) {
