@@ -115,4 +115,9 @@ public class AbilitySystem : MonoBehaviour
     {
         return Abilities.Contains(ability) && UseAbility(Abilities.IndexOf(ability));
     }
+
+    public void AddEffect(AbilityEffect effect) {
+        effect.EffectStarted += OnEffectStarted;
+        effect.EffectEnded += OnEffectEnded;
+    }
 }

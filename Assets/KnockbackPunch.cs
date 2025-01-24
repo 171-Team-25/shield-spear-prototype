@@ -24,9 +24,13 @@ public class KnockbackPunch : MonoBehaviour
     private float charge = 0;
     private float chargeRate = 1.2f;
     private string[] TagsOfHittables = {"Offense", "Defense", "Enemy"};
+    private AbilityEffect disableMovement;
     // Start is called before the first frame update
     void Start()
     {
+        disableMovement = new AbilityEffect {
+            EffectType = EffectType.DisableMovement
+        };
         _playerInput = transform.parent.gameObject.GetComponent<PlayerInput>();
         visualizer = transform.Find("KnockbackVisual").gameObject;
         knockbackCooldown = 0;
@@ -66,7 +70,8 @@ public class KnockbackPunch : MonoBehaviour
         }
         if (!isKnockbacking && charge <= 0) {
             knockbackCooldown -= Time.deltaTime;
-        } 
+        }
+
     }
     private void OnTriggerEnter(Collider other) {
         for (int i = 0; i < TagsOfHittables.Length; i++) {
@@ -76,13 +81,23 @@ public class KnockbackPunch : MonoBehaviour
                     if (!hitEntities.Contains(other.gameObject)) {
                         Rigidbody enemyRB= other.gameObject.GetComponent<Rigidbody>();
                         if (enemyRB != null) {
-                            enemyRB.AddForce(transform.parent.transform.forward * ((charge * 5) + 5),ForceMode.Impulse);
+                            if (other.gameObject.TryGetComponent<AbilitySystem>(out var abilitySystem)) {
+                                abilitySystem.AddEffect(disableMovement);
+                                disableMovement.StartEffect();
+                                //enemyRB.AddForce(transform.parent.transform.forward * ((charge * 5) + 5),ForceMode.Impulse);
+                                enemyRB.velocity = transform.parent.transform.forward * (charge * 5);
+                                StartCoroutine(EndEffectAfterTime(disableMovement));
+                            };
                         }
                         hitEntities.Add(other.gameObject);
                     } 
                 }
             }
         }
-        
+    }
+
+    IEnumerator EndEffectAfterTime(AbilityEffect effect){
+        yield return new WaitForSeconds(2);
+        effect.EndEffect();
     }
 }
