@@ -40,7 +40,9 @@ public class DefenseMovement : MonoBehaviour
         else
         {
             var dir = _playerInput.actions["Aim"].ReadValue<Vector2>();
-            transform.rotation = Quaternion.LookRotation(new(dir.x, 0, dir.y));
+            if (Math.Abs(dir.x) >= 0.3 || Math.Abs(dir.y) >= 0.3) {
+                transform.rotation = Quaternion.LookRotation(new(dir.x, 0, dir.y));
+            }
         }
     }
 }
