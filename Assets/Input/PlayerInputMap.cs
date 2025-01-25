@@ -112,6 +112,33 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Ability4"",
+                    ""type"": ""Button"",
+                    ""id"": ""554dc34b-e8ca-4138-8e50-c7c5082db409"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ability5"",
+                    ""type"": ""Button"",
+                    ""id"": ""46b2f19d-80b2-4396-96e6-3f4bc015bd0a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ability6"",
+                    ""type"": ""Button"",
+                    ""id"": ""34f57381-dd1d-4c88-94f6-10e5a60b1394"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Aim"",
                     ""type"": ""Value"",
                     ""id"": ""8aa903c4-d92f-4583-a06c-883fe7aab934"",
@@ -306,6 +333,72 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
                     ""action"": ""Ability3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3330c438-7f91-46e1-8c73-d0f7d8b891f2"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""Ability4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""11185b7b-8604-4b38-8fe8-8eb15f09e8bb"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Ability4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e7adc6de-d7ef-4a2e-89b1-e6b4ee802b70"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""Ability5"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""41644068-bc62-43f7-a568-7907f975dceb"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Ability5"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b484162c-e4ed-4241-a711-177bf3b812e4"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""Ability6"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""df19ae10-3430-46b5-aa9c-d4204314289b"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Ability6"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -539,6 +632,9 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
         m_Play_Ability1 = m_Play.FindAction("Ability1", throwIfNotFound: true);
         m_Play_Ability2 = m_Play.FindAction("Ability2", throwIfNotFound: true);
         m_Play_Ability3 = m_Play.FindAction("Ability3", throwIfNotFound: true);
+        m_Play_Ability4 = m_Play.FindAction("Ability4", throwIfNotFound: true);
+        m_Play_Ability5 = m_Play.FindAction("Ability5", throwIfNotFound: true);
+        m_Play_Ability6 = m_Play.FindAction("Ability6", throwIfNotFound: true);
         m_Play_Aim = m_Play.FindAction("Aim", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -665,6 +761,9 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
     private readonly InputAction m_Play_Ability1;
     private readonly InputAction m_Play_Ability2;
     private readonly InputAction m_Play_Ability3;
+    private readonly InputAction m_Play_Ability4;
+    private readonly InputAction m_Play_Ability5;
+    private readonly InputAction m_Play_Ability6;
     private readonly InputAction m_Play_Aim;
     public struct PlayActions
     {
@@ -675,6 +774,9 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
         public InputAction @Ability1 => m_Wrapper.m_Play_Ability1;
         public InputAction @Ability2 => m_Wrapper.m_Play_Ability2;
         public InputAction @Ability3 => m_Wrapper.m_Play_Ability3;
+        public InputAction @Ability4 => m_Wrapper.m_Play_Ability4;
+        public InputAction @Ability5 => m_Wrapper.m_Play_Ability5;
+        public InputAction @Ability6 => m_Wrapper.m_Play_Ability6;
         public InputAction @Aim => m_Wrapper.m_Play_Aim;
         public InputActionMap Get() { return m_Wrapper.m_Play; }
         public void Enable() { Get().Enable(); }
@@ -700,6 +802,15 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
             @Ability3.started += instance.OnAbility3;
             @Ability3.performed += instance.OnAbility3;
             @Ability3.canceled += instance.OnAbility3;
+            @Ability4.started += instance.OnAbility4;
+            @Ability4.performed += instance.OnAbility4;
+            @Ability4.canceled += instance.OnAbility4;
+            @Ability5.started += instance.OnAbility5;
+            @Ability5.performed += instance.OnAbility5;
+            @Ability5.canceled += instance.OnAbility5;
+            @Ability6.started += instance.OnAbility6;
+            @Ability6.performed += instance.OnAbility6;
+            @Ability6.canceled += instance.OnAbility6;
             @Aim.started += instance.OnAim;
             @Aim.performed += instance.OnAim;
             @Aim.canceled += instance.OnAim;
@@ -722,6 +833,15 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
             @Ability3.started -= instance.OnAbility3;
             @Ability3.performed -= instance.OnAbility3;
             @Ability3.canceled -= instance.OnAbility3;
+            @Ability4.started -= instance.OnAbility4;
+            @Ability4.performed -= instance.OnAbility4;
+            @Ability4.canceled -= instance.OnAbility4;
+            @Ability5.started -= instance.OnAbility5;
+            @Ability5.performed -= instance.OnAbility5;
+            @Ability5.canceled -= instance.OnAbility5;
+            @Ability6.started -= instance.OnAbility6;
+            @Ability6.performed -= instance.OnAbility6;
+            @Ability6.canceled -= instance.OnAbility6;
             @Aim.started -= instance.OnAim;
             @Aim.performed -= instance.OnAim;
             @Aim.canceled -= instance.OnAim;
@@ -841,6 +961,9 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
         void OnAbility1(InputAction.CallbackContext context);
         void OnAbility2(InputAction.CallbackContext context);
         void OnAbility3(InputAction.CallbackContext context);
+        void OnAbility4(InputAction.CallbackContext context);
+        void OnAbility5(InputAction.CallbackContext context);
+        void OnAbility6(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
     }
     public interface IUIActions

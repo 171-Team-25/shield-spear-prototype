@@ -65,6 +65,8 @@ GameObject:
   - component: {fileID: 6678942266546879203}
   - component: {fileID: 1127364197736806260}
   - component: {fileID: -5144468029800996837}
+  - component: {fileID: 9023233256117736400}
+  - component: {fileID: 5970143507228248449}
   m_Layer: 0
   m_Name: Offense
   m_TagString: Offense
@@ -184,11 +186,11 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &6867170752473587404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,6 +290,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4473a1ece137c2d48a4b3c93a4173fd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9023233256117736400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3325478105745935182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34d62abddb805c942b3adc9774777bb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxNumberOfAbilities: 3
+--- !u!114 &5970143507228248449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3325478105745935182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e672c06ece23104a98b3d7726cc7f09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashDistance: 5
+  dashDurationS: 0.1
 --- !u!1001 &6914462464066401885
 PrefabInstance:
   m_ObjectHideFlags: 0

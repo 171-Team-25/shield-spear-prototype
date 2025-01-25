@@ -23,7 +23,7 @@ public class DefenseMovement : MonoBehaviour
     {
         float currentYVelocity = body.velocity.y;
         var inputDirection = _playerInput.actions["Move"].ReadValue<Vector2>();
-        body.velocity = new Vector3(inputDirection.x * speed, currentYVelocity, inputDirection.y * speed);
+        body.velocity = new Vector3(inputDirection.x * speed, 0, inputDirection.y * speed);
     }
     private void FixedUpdate() {
         RaycastHit hit;

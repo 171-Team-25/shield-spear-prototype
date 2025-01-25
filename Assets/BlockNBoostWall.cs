@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.VisualScripting;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class BlockNBoostWall : MonoBehaviour
 {
@@ -36,6 +37,8 @@ public class BlockNBoostWall : MonoBehaviour
         }
         transform.Find("BoostNBlockVisual").gameObject.SetActive(false);
         transform.localPosition = new Vector3(0, 200, 0);
+        boxCollider.enabled = false;
+
     }
 
     // Update is called once per frame
@@ -45,6 +48,7 @@ public class BlockNBoostWall : MonoBehaviour
         wallReady = false;
         transform.Find("BoostNBlockVisual").gameObject.SetActive(true);
         transform.localPosition = new Vector3(0, 0, 3);
+        boxCollider.enabled = true;
         Invoke("ResetWall", 2);
         transform.SetParent(null);
       }
@@ -54,7 +58,7 @@ public class BlockNBoostWall : MonoBehaviour
         wallReady = true;
         transform.Find("BoostNBlockVisual").gameObject.SetActive(false);
         transform.SetParent(wallOwner.transform);
-        transform.localPosition = new Vector3(0, 200, 0);
+        boxCollider.enabled = false;
         transform.localRotation = Quaternion.Euler(0, 0, 0);
     }
 }
