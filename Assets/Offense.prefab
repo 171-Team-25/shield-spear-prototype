@@ -67,6 +67,7 @@ GameObject:
   - component: {fileID: -5144468029800996837}
   - component: {fileID: 9023233256117736400}
   - component: {fileID: 5970143507228248449}
+  - component: {fileID: 7376713366488813659}
   m_Layer: 0
   m_Name: Offense
   m_TagString: Offense
@@ -317,6 +318,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashDistance: 5
   dashDurationS: 0.1
+--- !u!114 &7376713366488813659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3325478105745935182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55e5143d9ce6edf4eb4fad25bf5d0343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tugRate: 3
+  tugDurationS: 0.2
+  minimumDistanceToDefense: 3
 --- !u!1001 &6914462464066401885
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -125,7 +125,6 @@ public class KnockbackPunch : MonoBehaviour
                             {
                                 abilitySystem.AddEffect(disableMovement);
                                 disableMovement.StartEffect();
-                                //enemyRB.AddForce(transform.parent.transform.forward * ((charge * 5) + 5),ForceMode.Impulse);
                                 enemyRB.velocity =
                                     transform.parent.transform.forward * (charge * 5);
                                 StartCoroutine(EndEffectAfterTime(disableMovement));

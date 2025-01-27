@@ -40,7 +40,6 @@ public class JumpToOffense : MonoBehaviour
     {
         if (jumpCooldown <= 0 && _playerInput.actions["Ability5"].ReadValue<float>() > 0) {
             if (Mathf.Max(0, Vector3.Distance(teammateOffense.transform.position, transform.position) - minimumDistanceToOffense) > 0) {
-                Debug.Log("used ability 5");
                 jumpCooldown = jumpRate;
                 StartCoroutine(JumpToTeammate());
             }
