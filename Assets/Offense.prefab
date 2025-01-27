@@ -46,6 +46,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 2547459420588107620, guid: e3eadd8c1f175ad4db94c6ff0a4014e2, type: 3}
   poolSize: 20
+--- !u!1 &1558948810249900463
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 705017009804890266}
+  - component: {fileID: 2944797786068517542}
+  m_Layer: 0
+  m_Name: ShotgunBulletPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &705017009804890266
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558948810249900463}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.22127523, y: 2.6407309, z: -3.301131}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4103277015631850418}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2944797786068517542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558948810249900463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 157a250095eec544f9c2e3e66fdc023f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 6426661291656002246, guid: 7b98dc37c7b23c544b0abe109b07980b, type: 3}
+  poolSize: 5
 --- !u!1 &3325478105745935182
 GameObject:
   m_ObjectHideFlags: 0
@@ -68,6 +114,7 @@ GameObject:
   - component: {fileID: 9023233256117736400}
   - component: {fileID: 5970143507228248449}
   - component: {fileID: 7376713366488813659}
+  - component: {fileID: 4616043717265165246}
   m_Layer: 0
   m_Name: Offense
   m_TagString: Offense
@@ -88,6 +135,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 705017009804890266}
   - {fileID: 4435140019599727902}
   - {fileID: 2737098483097783072}
   m_Father: {fileID: 0}
@@ -333,6 +381,22 @@ MonoBehaviour:
   tugRate: 3
   tugDurationS: 0.2
   minimumDistanceToDefense: 3
+--- !u!114 &4616043717265165246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3325478105745935182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fe4012f976e8c548858b02d3e6ba902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPool: {fileID: 0}
+  firePoint: {fileID: 4103277015631850418}
+  fireRate: 0.1
+  blastAngleDegrees: 45
 --- !u!1001 &6914462464066401885
 PrefabInstance:
   m_ObjectHideFlags: 0

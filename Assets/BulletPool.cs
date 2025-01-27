@@ -17,7 +17,6 @@ public class BulletPool : MonoBehaviour
         {
             return;
         }
-
         bulletPool = new GameObject[poolSize];
         FillBulletPool(bulletPool, poolSize);
     }
