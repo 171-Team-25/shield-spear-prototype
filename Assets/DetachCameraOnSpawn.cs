@@ -5,6 +5,7 @@ using UnityEngine;
 public class DetachCameraOnSpawn : MonoBehaviour
 {
     public GameObject targetCamera;
+
     // Start is called before the first frame update
     void Start()
     {
