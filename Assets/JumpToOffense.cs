@@ -20,7 +20,6 @@ public class JumpToOffense : MonoBehaviour
     public float jumpDurationS;
     [SerializeField] float minimumDistanceToOffense = 3f;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +61,10 @@ public class JumpToOffense : MonoBehaviour
     }
 
     private IEnumerator JumpToTeammate() {
+        Collider defenseCollider = GetComponent<Collider>();
+        if (defenseCollider != null) {
+            defenseCollider.enabled = false;
+        }
         var jumpTimer = jumpDurationS / Time.fixedDeltaTime;
         var jumpDistance = Mathf.Max(0, Vector3.Distance(teammateOffense.transform.position, transform.position) - minimumDistanceToOffense);
         var jumpSpeed =  jumpDistance / jumpTimer / Time.fixedDeltaTime;
@@ -74,6 +77,16 @@ public class JumpToOffense : MonoBehaviour
             jumpTimer--;
             _rigidbody.velocity = jumpDirection * jumpSpeed;
             yield return new WaitForFixedUpdate();
+        }
+        if (defenseCollider != null) {
+            defenseCollider.enabled = true;
+            Collider[] overlappingColliders = Physics.OverlapBox(defenseCollider.bounds.center, defenseCollider.bounds.extents, transform.rotation, ~0, QueryTriggerInteraction.Ignore);
+            foreach (var collider in overlappingColliders) {
+                if (collider != defenseCollider && collider.gameObject.CompareTag("Untagged")) {
+                    _rigidbody.position = jumpDestination;
+                    break;
+                }
+            }
         }
         disableMovement.EndEffect();
     }
