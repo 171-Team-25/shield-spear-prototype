@@ -653,6 +653,7 @@ GameObject:
   - component: {fileID: 2336230629948568150}
   - component: {fileID: 7151157050718844314}
   - component: {fileID: 5240138736660916969}
+  - component: {fileID: 7079174486329761791}
   m_Layer: 0
   m_Name: Defense
   m_TagString: Defense
@@ -894,6 +895,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxNumberOfAbilities: 3
+--- !u!114 &7079174486329761791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6628229698690515657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e72aff8a40c26459bc1b338e469246, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpRate: 3
+  jumpDurationS: 0.1
+  minimumDistanceToOffense: 3
 --- !u!1 &8175337644451211113
 GameObject:
   m_ObjectHideFlags: 0
