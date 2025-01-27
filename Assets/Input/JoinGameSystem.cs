@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
@@ -13,6 +14,7 @@ public class JoinGameSystem : MonoBehaviour
     // Player Prefabs
     public GameObject offensePrefab;
     public GameObject defensePrefab;
+    public GameObject teamIndicatorPrefab;
     private void Start()
     {
         
@@ -56,6 +58,20 @@ public class JoinGameSystem : MonoBehaviour
         var teamSize = _playerInputManager.maxPlayerCount / 2;
         var team = fillTeamsInOrder ? (playerCount > teamSize ? 2 : 1) : (playerCount + 1) % 2 + 1;
         Debug.Log("Player " + _playerInputManager.playerCount + " has joined on team " + team);
+
+        GameObject playersTeamIndicator = Instantiate(teamIndicatorPrefab);
+        playersTeamIndicator.transform.SetParent(playerInput.gameObject.transform);
+        Renderer indicatorRenderer = playersTeamIndicator.GetComponent<Renderer>();
+        if (indicatorRenderer != null) {
+            if (team == 1) {
+                indicatorRenderer.material.SetColor("_Color", Color.blue);
+                playersTeamIndicator.transform.localPosition = new UnityEngine.Vector3(0, -1, 0);
+            } else if (team == 2) {
+                indicatorRenderer.material.SetColor("_Color", Color.red);
+                playersTeamIndicator.transform.localPosition = new UnityEngine.Vector3(0, -1.1f, 0);
+            }
+        }
+
         if (playerInput.gameObject.TryGetComponent<CurrentTeam>(out var currentTeam))
         {
             currentTeam.Team = team;

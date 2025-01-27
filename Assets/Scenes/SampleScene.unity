@@ -433,6 +433,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerInputManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8141764765787877160, guid: c5e44835d9a62cb4a8c639d0efb0f674, type: 3}
+      propertyPath: teamIndicatorPrefab
+      value: 
+      objectReference: {fileID: 6086950404436467679, guid: edc83f8ae3567354e9c87441eb22ad37, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
