@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] protected int baseHealth = 100;
+    [SerializeField]
+    protected int baseHealth = 100;
     public int currentHealth;
 
     public bool IsWeakened = false;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,13 +19,16 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentHealth <= 0) {
+        if (currentHealth <= 0)
+        {
             Destroy(this.gameObject);
         }
     }
 
-    public void takeDamage(int damage) {
-        if (IsWeakened) {
+    public void takeDamage(int damage)
+    {
+        if (IsWeakened)
+        {
             damage = (int)(damage * 1.5f);
         }
         Debug.Log(this + "takes " + damage + " damage");

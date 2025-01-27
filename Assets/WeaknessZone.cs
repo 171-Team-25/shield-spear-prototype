@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class WeaknessZone : MonoBehaviour
@@ -13,7 +13,7 @@ public class WeaknessZone : MonoBehaviour
     private bool zoneReady = true;
     private GameObject zoneOwner;
     private List<GameObject> hitEntities = new List<GameObject>();
-    private string[] TagsOfHittables = {"Offense", "Defense", "Enemy"};
+    private string[] TagsOfHittables = { "Offense", "Defense", "Enemy" };
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +24,8 @@ public class WeaknessZone : MonoBehaviour
         zoneVisual = transform.Find("WeaknessZoneVisual").gameObject;
         CurrentTeam zoneMakersTeam = transform.parent.gameObject.GetComponent<CurrentTeam>();
         CurrentTeam zonesTeam = GetComponent<CurrentTeam>();
-        if (zoneMakersTeam != null && zonesTeam != null) {
+        if (zoneMakersTeam != null && zonesTeam != null)
+        {
             zonesTeam.Team = zoneMakersTeam.Team;
         }
         transform.Find("WeaknessZoneVisual").gameObject.SetActive(false);
@@ -34,7 +35,8 @@ public class WeaknessZone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (zoneReady && _playerInput.actions["Ability3"].ReadValue<float>() > 0) {
+        if (zoneReady && _playerInput.actions["Ability3"].ReadValue<float>() > 0)
+        {
             zoneReady = false;
             transform.Find("WeaknessZoneVisual").gameObject.SetActive(true);
             transform.localPosition = new Vector3(0, -1, 4);
@@ -43,51 +45,76 @@ public class WeaknessZone : MonoBehaviour
         }
     }
 
-    void ResetZone() {
+    void ResetZone()
+    {
         zoneReady = true;
         transform.Find("WeaknessZoneVisual").gameObject.SetActive(false);
         transform.SetParent(zoneOwner.transform);
         transform.localPosition = new Vector3(0, 300, 0);
         transform.localRotation = Quaternion.Euler(0, 0, 0);
-        foreach(GameObject entitiy in hitEntities) {
+        foreach (GameObject entitiy in hitEntities)
+        {
             Health enemyHealth = entitiy.GetComponent<Health>();
-            if (enemyHealth != null) {
+            if (enemyHealth != null)
+            {
                 enemyHealth.IsWeakened = false;
             }
         }
     }
 
-    private void OnTriggerEnter(Collider other) {
-        for (int i = 0; i < TagsOfHittables.Length; i++) {
-            if (other.CompareTag(TagsOfHittables[i])) {
+    private void OnTriggerEnter(Collider other)
+    {
+        for (int i = 0; i < TagsOfHittables.Length; i++)
+        {
+            if (other.CompareTag(TagsOfHittables[i]))
+            {
                 CurrentTeam hasTeam = other.gameObject.GetComponent<CurrentTeam>();
-                if ((hasTeam != null && hasTeam.Team != this.gameObject.GetComponent<CurrentTeam>().Team) || other.CompareTag("Enemy")) {
+                if (
+                    (
+                        hasTeam != null
+                        && hasTeam.Team != this.gameObject.GetComponent<CurrentTeam>().Team
+                    ) || other.CompareTag("Enemy")
+                )
+                {
                     Health enemyHealth = other.gameObject.GetComponent<Health>();
-                    if (enemyHealth != null && !enemyHealth.IsWeakened) {
-                        if(!hitEntities.Contains(other.gameObject)) {
+                    if (enemyHealth != null && !enemyHealth.IsWeakened)
+                    {
+                        if (!hitEntities.Contains(other.gameObject))
+                        {
                             hitEntities.Add(other.gameObject);
                         }
                         enemyHealth.IsWeakened = true;
                     }
                 }
             }
-        }  
+        }
     }
 
-    private void OnTriggerExit(Collider other) {
-        for (int i = 0; i < TagsOfHittables.Length; i++) {
-            if (other.CompareTag(TagsOfHittables[i])) {
+    private void OnTriggerExit(Collider other)
+    {
+        for (int i = 0; i < TagsOfHittables.Length; i++)
+        {
+            if (other.CompareTag(TagsOfHittables[i]))
+            {
                 CurrentTeam hasTeam = other.gameObject.GetComponent<CurrentTeam>();
-                if ((hasTeam != null && hasTeam.Team != this.gameObject.GetComponent<CurrentTeam>().Team) || other.CompareTag("Enemy")) {
+                if (
+                    (
+                        hasTeam != null
+                        && hasTeam.Team != this.gameObject.GetComponent<CurrentTeam>().Team
+                    ) || other.CompareTag("Enemy")
+                )
+                {
                     Health enemyHealth = other.gameObject.GetComponent<Health>();
-                    if (enemyHealth != null && enemyHealth.IsWeakened) {
-                        if(hitEntities.Contains(other.gameObject)) {
+                    if (enemyHealth != null && enemyHealth.IsWeakened)
+                    {
+                        if (hitEntities.Contains(other.gameObject))
+                        {
                             hitEntities.Remove(other.gameObject);
                         }
                         enemyHealth.IsWeakened = false;
                     }
                 }
             }
-        }  
+        }
     }
 }

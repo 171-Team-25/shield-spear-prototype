@@ -3,13 +3,15 @@ using UnityEngine;
 
 public class CurrentTeam : MonoBehaviour
 {
-    [SerializeField] private int currentTeam;
+    [SerializeField]
+    private int currentTeam;
     public int Team
     {
         get => currentTeam;
         set
         {
-            if (value == currentTeam) return;
+            if (value == currentTeam)
+                return;
             currentTeam = value;
         }
     }

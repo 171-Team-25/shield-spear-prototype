@@ -11,12 +11,14 @@ public class ProjectileLauncher : MonoBehaviour
     public float fireRate = 10f;
     private float _fireCooldown;
     private PlayerInput _playerInput;
+
     // Start is called before the first frame update
     void Start()
     {
         _fireCooldown = 0;
         GameObject bulletManager = transform.Find("OffenseBulletPool").gameObject;
-        if (bulletManager != null) {
+        if (bulletManager != null)
+        {
             bulletPool = bulletManager.GetComponent<BulletPool>();
         }
         _playerInput = GetComponent<PlayerInput>();
@@ -27,14 +29,17 @@ public class ProjectileLauncher : MonoBehaviour
     {
         _fireCooldown -= Time.deltaTime;
 
-        if(_fireCooldown <= 0 && _playerInput.actions["Attack"].ReadValue<float>() > 0) {
+        if (_fireCooldown <= 0 && _playerInput.actions["Attack"].ReadValue<float>() > 0)
+        {
             Shoot();
         }
     }
 
-    void Shoot() {
+    void Shoot()
+    {
         GameObject bullet = bulletPool.GetBullet();
-        if (bullet != null) {
+        if (bullet != null)
+        {
             bullet.transform.position = firePoint.position;
             bullet.transform.rotation = firePoint.rotation;
         }
