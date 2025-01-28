@@ -12,24 +12,20 @@ public class DashAbility : MonoBehaviour, IAbility
         ActivationType = AbilityActivationType.Press,
         UsageType = AbilityUsageType.Instant,
     };
-    
+
     public readonly AbilityEffect[] Effects =
     {
-        new AbilityEffect
-        {
-            EffectType = EffectType.DisableMovement,
-        },
-        new AbilityEffect
-        {
-            EffectType = EffectType.IgnorePlayerCollision,
-        },
+        new AbilityEffect { EffectType = EffectType.DisableMovement },
+        new AbilityEffect { EffectType = EffectType.IgnorePlayerCollision },
     };
     public event EventHandler<AbilityEventArgs> AbilityStarted;
     public event EventHandler<AbilityEventArgs> AbilityEnded;
 
     private Rigidbody _rigidbody;
-    [NonSerialized] public AbilityCooldown Cooldown;
-    
+
+    [NonSerialized]
+    public AbilityCooldown Cooldown;
+
     public void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -37,12 +33,11 @@ public class DashAbility : MonoBehaviour, IAbility
         Cooldown.maxCooldown = AbilityStats.Cooldown;
     }
 
-
     public void Activate()
     {
         if (Cooldown.Running)
             return;
-        
+
         StartCoroutine(Dash());
     }
 
@@ -67,8 +62,8 @@ public class DashAbility : MonoBehaviour, IAbility
         var dashSpeed = dashDistance / dashTimer / Time.fixedDeltaTime;
         var dashDirection = gameObject.transform.forward;
         var startPosition = gameObject.transform.position;
-        
-        AbilityStarted?.Invoke(this, new AbilityEventArgs{Ability = this, Owner = gameObject});
+
+        AbilityStarted?.Invoke(this, new AbilityEventArgs { Ability = this, Owner = gameObject });
         foreach (var effect in Effects)
         {
             effect.StartEffect();
@@ -83,7 +78,6 @@ public class DashAbility : MonoBehaviour, IAbility
         {
             effect.EndEffect();
         }
-        AbilityEnded?.Invoke(this, new AbilityEventArgs{Ability = this, Owner = gameObject});
+        AbilityEnded?.Invoke(this, new AbilityEventArgs { Ability = this, Owner = gameObject });
     }
-    
 }

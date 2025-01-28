@@ -30,20 +30,21 @@ public class AbilitySystem : MonoBehaviour
         }
     }
 
-
     private void OnperformedAbility1(InputAction.CallbackContext obj)
     {
         UseAbility(0);
     }
+
     private void OnperformedAbility2(InputAction.CallbackContext obj)
     {
         UseAbility(1);
     }
+
     private void OnperformedAbility3(InputAction.CallbackContext obj)
     {
         UseAbility(2);
     }
-    
+
     public bool UseAbility(int abilityIndex)
     {
         if (Abilities.Count <= abilityIndex)
@@ -70,7 +71,7 @@ public class AbilitySystem : MonoBehaviour
     {
         e.Ability.AbilityEnded -= OnAbilityEnded;
     }
-    
+
     private void OnEffectStarted(object sender, EffectEventArgs e)
     {
         e.AbilityEffect.EffectStarted -= OnEffectStarted;
@@ -92,7 +93,7 @@ public class AbilitySystem : MonoBehaviour
                 throw new ArgumentOutOfRangeException();
         }
     }
-    
+
     private void OnEffectEnded(object sender, EffectEventArgs e)
     {
         e.AbilityEffect.EffectEnded -= OnEffectEnded;
@@ -115,13 +116,13 @@ public class AbilitySystem : MonoBehaviour
         }
     }
 
-
     public bool UseAbility(IAbility ability)
     {
         return Abilities.Contains(ability) && UseAbility(Abilities.IndexOf(ability));
     }
 
-    public void AddEffect(AbilityEffect effect) {
+    public void AddEffect(AbilityEffect effect)
+    {
         effect.EffectStarted += OnEffectStarted;
         effect.EffectEnded += OnEffectEnded;
     }

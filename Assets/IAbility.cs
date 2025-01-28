@@ -17,7 +17,8 @@ public class AbilityEventArgs : EventArgs
     public IAbility Ability;
 }
 
-public enum AbilityActivationType {
+public enum AbilityActivationType
+{
     None,
     Press,
     Hold,

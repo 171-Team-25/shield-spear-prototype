@@ -17,9 +17,18 @@ public class BulletBehavior : MonoBehaviour
     public int damage = 50;
     private int baseDamage;
 
-    private string[] TagsOfBulletReseters = {"Offense", "Defense", "Enemy", "Shield", "BoostWall"};
+    protected string[] TagsOfBulletReseters =
+    {
+        "Offense",
+        "Defense",
+        "Enemy",
+        "Shield",
+        "BoostWall",
+        "TerrainWall"
+    };
+
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         baseDamage = damage;
         baseSpeed = speed;
@@ -33,41 +42,53 @@ public class BulletBehavior : MonoBehaviour
 
         _lifeTimer -= Time.deltaTime;
 
-        if (_lifeTimer <= 0f) {
+        if (_lifeTimer <= 0f)
+        {
             resetBullet();
         }
     }
-    private void OnTriggerEnter(Collider other) {
-        for (int i = 0; i < TagsOfBulletReseters.Length; i++) {
-            if (other.CompareTag(TagsOfBulletReseters[i])) {
+
+    protected void OnTriggerEnter(Collider other)
+    {
+        for (int i = 0; i < TagsOfBulletReseters.Length; i++)
+        {
+            if (other.CompareTag(TagsOfBulletReseters[i]))
+            {
                 CurrentTeam hasTeam = other.gameObject.GetComponent<CurrentTeam>();
-                if (hasTeam != null && hasTeam.Team == this.gameObject.GetComponent<CurrentTeam>().Team) {
+                if (
+                    hasTeam != null
+                    && hasTeam.Team == this.gameObject.GetComponent<CurrentTeam>().Team
+                )
+                {
                     //if the bullet hits something on same team
-                    if (other.CompareTag("BoostWall")) {
+                    if (other.CompareTag("BoostWall"))
+                    {
                         speed *= 4;
                         damage *= 2;
                     }
                     break;
                 }
-                resetBullet();
                 Health enemyHealth = other.gameObject.GetComponent<Health>();
-                if (enemyHealth != null) {
+                if (enemyHealth != null)
+                {
                     enemyHealth.takeDamage(damage);
                 }
+                resetBullet();
                 break;
             }
         }
     }
 
-    private void resetBullet() {
+    protected void resetBullet()
+    {
         bulletPool.ReturnBullet(gameObject);
         _lifeTimer = lifeTime;
         speed = baseSpeed;
         damage = baseDamage;
     }
 
-    public void SetPool(BulletPool pool) {
+    public void SetPool(BulletPool pool)
+    {
         bulletPool = pool;
     }
-
 }

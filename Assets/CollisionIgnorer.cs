@@ -9,6 +9,7 @@ public class CollisionIgnorer : MonoBehaviour
     private LayerMask _defaultLayerMask;
     private int _defaultLayer;
     private Collider[] _colliders;
+
     public void Start()
     {
         _colliders = GetComponents<Collider>();
@@ -18,7 +19,9 @@ public class CollisionIgnorer : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Collision Ignorer: There is no CurrentTeam attached to this object for.");
+            Debug.LogWarning(
+                "Collision Ignorer: There is no CurrentTeam attached to this object for."
+            );
         }
     }
 
@@ -54,6 +57,6 @@ public class CollisionIgnorer : MonoBehaviour
         foreach (var collider in _colliders)
         {
             collider.excludeLayers = _defaultLayerMask;
-        }    
+        }
     }
 }

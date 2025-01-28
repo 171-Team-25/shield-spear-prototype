@@ -9,43 +9,48 @@ public class BulletPool : MonoBehaviour
     public int poolSize = 20;
 
     private GameObject[] bulletPool;
+
     // Start is called before the first frame update
     void Start()
     {
-        if (bulletPrefab == null) {
+        if (bulletPrefab == null)
+        {
             return;
         }
-
         bulletPool = new GameObject[poolSize];
         FillBulletPool(bulletPool, poolSize);
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    void Update() { }
 
-    private void FillBulletPool(GameObject[] bulletPool, int poolSize) {
-        for (int i = 0; i < poolSize; i++) {
+    private void FillBulletPool(GameObject[] bulletPool, int poolSize)
+    {
+        for (int i = 0; i < poolSize; i++)
+        {
             GameObject bullet = Instantiate(bulletPrefab);
             bullet.SetActive(false);
             BulletBehavior bulletBehavior = bullet.GetComponent<BulletBehavior>();
-            if (bulletBehavior != null) {
+            if (bulletBehavior != null)
+            {
                 bulletBehavior.SetPool(this);
             }
             CurrentTeam currentTeam = bullet.GetComponent<CurrentTeam>();
             CurrentTeam launchersTeam = transform.parent.gameObject.GetComponent<CurrentTeam>();
-            if (currentTeam != null && launchersTeam != null) {
+            if (currentTeam != null && launchersTeam != null)
+            {
                 currentTeam.Team = launchersTeam.Team;
             }
             bulletPool[i] = bullet;
         }
     }
 
-    public GameObject GetBullet() {
-        foreach(GameObject bullet in bulletPool) {
-            if (!bullet.activeInHierarchy) {
+    public GameObject GetBullet()
+    {
+        foreach (GameObject bullet in bulletPool)
+        {
+            if (!bullet.activeInHierarchy)
+            {
                 bullet.SetActive(true);
                 return bullet;
             }
@@ -53,7 +58,8 @@ public class BulletPool : MonoBehaviour
         return null;
     }
 
-    public void ReturnBullet(GameObject bullet) {
+    public void ReturnBullet(GameObject bullet)
+    {
         bullet.SetActive(false);
     }
 }
