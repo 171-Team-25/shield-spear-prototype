@@ -1,46 +1,25 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TetherIndicator : MonoBehaviour
 {
-    [SerializeField]
-    Transform offense;
-
-    [SerializeField]
-    Transform defense;
-
-    [SerializeField]
-    Renderer tetherRenderer;
-
-    [SerializeField]
-    SphereCollider tetherRangeCollider;
-
-    [SerializeField]
-    float maxTetherDistance;
-
-    [SerializeField]
-    float minTetherDistance = 1f;
+    [NonSerialized] public Transform Offense;
+    [NonSerialized] public Transform Defense;
+    public float tetherThickness = 1f;
+    public float MaxTetherDistance { get; set; }
+    private const float MinTetherDistance = 1f;
+    private Renderer _tetherRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
-        tetherRenderer = this.GetComponent<Renderer>();
-        if (tetherRangeCollider != null)
-        {
-            maxTetherDistance = tetherRangeCollider.radius;
-        }
-        else
-        {
-            maxTetherDistance = 5f;
-        }
+        _tetherRenderer = GetComponent<Renderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (offense == null || defense == null)
+        if (!Offense || !Defense) 
             return;
 
         Positioning();
@@ -48,34 +27,36 @@ public class TetherIndicator : MonoBehaviour
         Rotating();
     }
 
-    void Positioning()
+    private void OnDrawGizmos()
     {
-        Vector3 midpoint = (offense.position + defense.position) / 2f;
+        Gizmos.DrawWireSphere(Offense.position, MaxTetherDistance);
+        Gizmos.color = Color.yellow;
+    }
+
+    void Positioning() {
+        Vector3 midpoint = (Offense.position + Defense.position) / 2f;
         transform.position = midpoint;
     }
 
-    void Scaling()
-    {
-        float distance = Vector3.Distance(offense.position, defense.position);
+    void Scaling() {
+        float distance = Math.Max(Vector3.Distance(Offense.position, Defense.position), float.Epsilon);
         transform.localScale = new Vector3(
             distance,
-            Math.Min(1, 1 / distance),
-            Math.Min(1, 1 / distance)
+            Math.Min(1, 1 / distance) * tetherThickness,
+            Math.Min(1, 1 / distance) * tetherThickness
         );
         Coloring(distance);
     }
 
-    void Rotating()
-    {
-        Vector3 direction = (offense.position - defense.position).normalized;
+    void Rotating() {
+        Vector3 direction = (Offense.position - Defense.position).normalized;
         float zAngle = Mathf.Atan2(-direction.y, direction.x) * Mathf.Rad2Deg;
         float yAngle = Mathf.Atan2(-direction.z, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, yAngle, zAngle);
     }
 
-    void Coloring(float distance)
-    {
-        distance = (distance - minTetherDistance) / (maxTetherDistance - minTetherDistance);
-        tetherRenderer.material.SetColor("_Color", Color.Lerp(Color.green, Color.red, distance));
+    void Coloring(float distance) {
+        distance = (distance - MinTetherDistance) / (MaxTetherDistance - MinTetherDistance);
+        _tetherRenderer.material.SetColor("_Color", Color.Lerp(Color.green, Color.red, distance));
     }
 }

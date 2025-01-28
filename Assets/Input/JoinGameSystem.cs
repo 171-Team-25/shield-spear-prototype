@@ -9,7 +9,6 @@ public class JoinGameSystem : MonoBehaviour
 {
     private PlayerInputManager _playerInputManager;
     private PlayerInputMap _playerInputMap;
-    public List<PlayerInput> playerInputs;
     public bool fillTeamsInOrder = true;
 
     // Player Prefabs
@@ -52,12 +51,10 @@ public class JoinGameSystem : MonoBehaviour
         if (playerInput.devices.Count == 0)
         {
             Debug.Log("No Device Bound. Binding to keyboard.");
-            var user = playerInputs.FirstOrDefault().user;
-            var device = user.pairedDevices.FirstOrDefault();
-            InputUser.PerformPairingWithDevice(device, user);
+            var device = Keyboard.current;
+            InputUser.PerformPairingWithDevice(device, playerInput.user);
         }
 
-        playerInputs.Add(playerInput);
         var playerCount = _playerInputManager.playerCount;
         var teamSize = _playerInputManager.maxPlayerCount / 2;
         var team = fillTeamsInOrder ? (playerCount > teamSize ? 2 : 1) : (playerCount + 1) % 2 + 1;
