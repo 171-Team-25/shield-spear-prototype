@@ -24,7 +24,7 @@ jobs:
         with:
           targetPlatform: WebGL
           buildScenes: 
-            Assets/Scenes/SampleScene.unity
+            Assets/Scenes/main.unity
 
       # Output
       - uses: actions/upload-artifact@v3
