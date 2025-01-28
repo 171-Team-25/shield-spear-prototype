@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 
 public class PiercingBolt : MonoBehaviour
 {
-    private MeshCollider boltCollider;
     private Renderer warningRenderer;
     private PlayerInput _playerInput;
     private float boltCooldown;
@@ -24,6 +23,10 @@ public class PiercingBolt : MonoBehaviour
 
     private GameObject warningVisual;
 
+    private GameObject boltVisual;
+    private GameObject boltHitbox;
+    private CapsuleCollider boltCollider;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +38,11 @@ public class PiercingBolt : MonoBehaviour
         warningHitbox.transform.localPosition = new Vector3(0, -0.8f, boltDistance/2);
         warningVisual.transform.localScale = new Vector3(0.25f, 1, boltDistance/10);
         warningHitbox.GetComponent<BoxCollider>().size = new Vector3(2.5f, 1, boltDistance);
+        boltHitbox = transform.Find("PiercingBolt/PiercingBoltHitbox").gameObject;
+        boltVisual = boltHitbox.transform.Find("PiercingBoltVisual").gameObject;
+        boltCollider = boltHitbox.GetComponent<CapsuleCollider>();
+        boltCollider.enabled = false;
+        ExtendBolt(0f);
     }
 
     // Update is called once per frame
@@ -49,20 +57,23 @@ public class PiercingBolt : MonoBehaviour
             warnColor.a = Mathf.Lerp(0f, 1f, warningTimer/durationTillShoot);
             warningRenderer.material.color = warnColor;
             if (warningTimer >= durationTillShoot) {
-                ShootingBolt();
                 isReadying = false;
                 isShooting = true;
+                boltCollider.enabled = true;
             }
         } else {
             boltCooldown -= Time.deltaTime;
         }
         if (isShooting) {
-
+            boltTimer += Time.deltaTime;
+            float height = Mathf.Lerp(0, boltDistance, boltTimer/durationTillFull);
+            ExtendBolt(height);
+            if(boltTimer >= durationTillFull) {
+                isShooting = false;
+                boltCollider.enabled = false;
+                ResetBolt();
+            }
         }
-    }
-
-    void ShootingBolt() {
-        ResetBolt();
     }
 
     void ResetBolt() {
@@ -72,9 +83,13 @@ public class PiercingBolt : MonoBehaviour
         warnColor.a = 0f;
         warningRenderer.material.color = warnColor;
         warningTimer = 0;
+        boltTimer = 0;
+        ExtendBolt(0f);
     }
 
-    IEnumerator TurnColorOff(Color warnColor) {
-        yield return 0;
+    void ExtendBolt(float height) {
+        boltCollider.height = height;
+        boltHitbox.transform.localPosition = new Vector3(0,0,height/2);
+        boltVisual.transform.localScale = new Vector3(1,height/2, 1);
     }
 }
