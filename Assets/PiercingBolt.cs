@@ -26,23 +26,24 @@ public class PiercingBolt : MonoBehaviour
     private GameObject boltVisual;
     private GameObject boltHitbox;
     private CapsuleCollider boltCollider;
-
+    private GameObject piercingBolt;
     // Start is called before the first frame update
     void Start()
     {
         boltCooldown = 0;
         _playerInput = GetComponent<PlayerInput>();
-        GameObject warningHitbox = transform.Find("PiercingBolt/PiercingBoltWarningHitbox").gameObject;
+        piercingBolt = transform.Find("PiercingBolt").gameObject;
+        GameObject warningHitbox = piercingBolt.transform.Find("PiercingBoltWarningHitbox").gameObject;
         warningVisual = warningHitbox.transform.Find("PiercingBoltWarningVisual").gameObject;
         warningRenderer = warningVisual.GetComponent<Renderer>();
         warningHitbox.transform.localPosition = new Vector3(0, -0.8f, boltDistance/2);
         warningVisual.transform.localScale = new Vector3(0.25f, 1, boltDistance/10);
         warningHitbox.GetComponent<BoxCollider>().size = new Vector3(2.5f, 1, boltDistance);
-        boltHitbox = transform.Find("PiercingBolt/PiercingBoltHitbox").gameObject;
+        boltHitbox = piercingBolt.transform.Find("PiercingBoltHitbox").gameObject;
         boltVisual = boltHitbox.transform.Find("PiercingBoltVisual").gameObject;
         boltCollider = boltHitbox.GetComponent<CapsuleCollider>();
         boltCollider.enabled = false;
-        ExtendBolt(0f);
+        ExtendBolt(0.1f);
     }
 
     // Update is called once per frame
@@ -50,6 +51,7 @@ public class PiercingBolt : MonoBehaviour
     {
         if (boltCooldown <= 0 && !isReadying && _playerInput.actions["Ability3"].ReadValue<float>() > 0) {
             isReadying = true;
+            piercingBolt.transform.SetParent(null);
         }
         Color warnColor = warningRenderer.material.color;
         if (isReadying) {
@@ -85,6 +87,9 @@ public class PiercingBolt : MonoBehaviour
         warningTimer = 0;
         boltTimer = 0;
         ExtendBolt(0f);
+        piercingBolt.transform.SetParent(transform);
+        piercingBolt.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        piercingBolt.transform.localPosition = new Vector3(0,0,0);
     }
 
     void ExtendBolt(float height) {
