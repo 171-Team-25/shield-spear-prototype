@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class TetherManager : MonoBehaviour
 {
-    public TetherManager Instance { get; private set; }
+    public static TetherManager Instance { get; private set; }
     public GameObject tetherIndicatorPrefab;
     public float pollingRate = 0.5f;
     private Coroutine _pollingRoutine;
@@ -59,6 +59,7 @@ public class TetherManager : MonoBehaviour
                 }
                 var tether = Instantiate(tetherIndicatorPrefab, transform);
                 var tetherIndicator = tether.GetComponent<TetherIndicator>();
+                offense[offenseIndex].GetComponent<Movement>().Tether = tetherIndicator;
                 tetherIndicator.Offense = offense[offenseIndex].transform;
                 tetherIndicator.Defense = defense[defenseIndex].transform;
                 tetherIndicator.MaxTetherDistance = tetherIndicator.Offense.GetComponent<Movement>().TetherDistance;

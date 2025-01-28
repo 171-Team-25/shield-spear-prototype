@@ -12,6 +12,7 @@ public class Movement : MonoBehaviour
     private PlayerInput _playerInput;
     [SerializeField] private float tetherDistance = 100f;
     [SerializeField] private float tetherPullForceFactor = 1f;
+    [SerializeField] private float maxTetherPullForce = 50f;
     [SerializeField] private float tetherDistanceBuffer = 50f;
     public float TetherDistance { get => tetherDistance; set => tetherDistance = value; }
     public TetherIndicator Tether { get; set; }
@@ -73,11 +74,26 @@ public class Movement : MonoBehaviour
     private void ApplyTether() {
         if (!Tether)
             return;
+        else
+        {
+            Tether.MinTetherDistance = Tether.MaxTetherDistance - tetherDistanceBuffer;
+        }
         var distance = Vector3.Distance(transform.position, Tether.Defense.position);
-        if (distance - tetherDistanceBuffer <= 0)
+        var direction = (Tether.Defense.position - transform.position).normalized;
+        if (distance + tetherDistanceBuffer < Tether.MaxTetherDistance)
             return;
-        
-        var force = 1 - Mathf.Pow(1 - distance / tetherDistanceBuffer, 3 );
-        Debug.Log(force);
+
+        // Calculate Pulling Force
+        // Function f(x) = -f * log((m - x) / m) - (m - b) / m
+        // Break up equation
+        var bufferFraction = (Tether.MaxTetherDistance - tetherDistanceBuffer) / Tether.MaxTetherDistance;
+        var distanceFraction = (Tether.MaxTetherDistance - distance) / Tether.MaxTetherDistance;
+        var force = -1 * Mathf.Log(Math.Max(Mathf.Epsilon, distanceFraction)) - bufferFraction;
+        // Apply Force Scaler
+        force *= tetherPullForceFactor;
+        // Clamp Pull Force
+        force = Mathf.Min(force, maxTetherPullForce);
+        body.velocity += direction * force;
+        Debug.Log(distance + " " + force);
     }
 }

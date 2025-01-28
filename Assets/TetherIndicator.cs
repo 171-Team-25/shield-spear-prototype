@@ -7,7 +7,7 @@ public class TetherIndicator : MonoBehaviour
     [NonSerialized] public Transform Defense;
     public float tetherThickness = 1f;
     public float MaxTetherDistance { get; set; }
-    private const float MinTetherDistance = 1f;
+    public float MinTetherDistance { get; set; } = 1f;
     private Renderer _tetherRenderer;
 
     // Start is called before the first frame update
