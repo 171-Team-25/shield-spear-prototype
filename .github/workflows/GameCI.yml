@@ -9,7 +9,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          lfs: true
+          sparse-checkout: .
 
       # Test
        
@@ -25,7 +25,6 @@ jobs:
           targetPlatform: WebGL
           buildScenes: 
             Assets/Scenes/main.unity
-          buildParameters: "-logFile /dev/stdout -nographics -batchmode"
 
       # Output
       - uses: actions/upload-artifact@v3
