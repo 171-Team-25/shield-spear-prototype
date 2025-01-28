@@ -97,5 +97,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tetherThickness: 0.5
-  maxTetherDistance: 0
+  maxTetherDistance: 10
   minTetherDistance: 1

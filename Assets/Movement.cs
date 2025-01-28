@@ -8,10 +8,15 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] Rigidbody body;
     [SerializeField] int speed = 1;
-    [SerializeField] SphereCollider maxDistanceFromDefense;
     [SerializeField] public Camera offenseCamera;
     private PlayerInput _playerInput;
+    [SerializeField] private float tetherDistance = 100f;
+    [SerializeField] private float tetherPullForceFactor = 1f;
+    [SerializeField] private float tetherDistanceBuffer = 50f;
+    public float TetherDistance { get => tetherDistance; set => tetherDistance = value; }
+    public TetherIndicator Tether { get; set; }
     
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +33,7 @@ public class Movement : MonoBehaviour
         float currentYVelocity = body.velocity.y;
         var inputDirection = _playerInput.actions["Move"].ReadValue<Vector2>();
         body.velocity = new Vector3(inputDirection.x * speed, 0, inputDirection.y * speed);
-        body.position = ClampToDefense(body.position);
+        ApplyTether();
     }
     private void FixedUpdate() {
         RaycastHit hit;
@@ -49,14 +54,14 @@ public class Movement : MonoBehaviour
         }
     }
 
-    Vector3 ClampToDefense(Vector3 newPosition) {
-        // Vector3 defenseCenter = maxDistanceFromDefense.transform.position;
-        // Vector3 fromDefenseCenter = newPosition - defenseCenter;
-        // if (fromDefenseCenter.magnitude > maxDistanceFromDefense.radius) {
-        //     fromDefenseCenter.Normalize();
-        //     newPosition = defenseCenter + fromDefenseCenter * maxDistanceFromDefense.radius;
-        // }
-        // return newPosition;
-        return transform.position;
+    private void ApplyTether() {
+        if (!Tether)
+            return;
+        var distance = Vector3.Distance(transform.position, Tether.Defense.position);
+        if (distance - tetherDistanceBuffer <= 0)
+            return;
+        
+        var force = 1 - Mathf.Pow(1 - distance / tetherDistanceBuffer, 3 );
+        Debug.Log(force);
     }
 }

@@ -13,6 +13,11 @@ public class AbilitySystem : MonoBehaviour
     public void Start()
     {
         _playerInput = GetComponent<PlayerInput>();
+        if (!_playerInput)
+        {
+            Debug.LogError("Ability System: No player input found");
+            return;
+        }
         Abilities = GetComponents<IAbility>().ToList();
         Abilities = Abilities.GetRange(0, Math.Min(maxNumberOfAbilities, Abilities.Count));
         _playerInput.actions["Ability1"].performed += OnperformedAbility1;

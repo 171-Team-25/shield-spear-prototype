@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TetherIndicator : MonoBehaviour
@@ -8,8 +6,8 @@ public class TetherIndicator : MonoBehaviour
     [NonSerialized] public Transform Offense;
     [NonSerialized] public Transform Defense;
     public float tetherThickness = 1f;
-    [SerializeField] private float maxTetherDistance;
-    [SerializeField] private float minTetherDistance = 1f;
+    public float MaxTetherDistance { get; set; }
+    private const float MinTetherDistance = 1f;
     private Renderer _tetherRenderer;
 
     // Start is called before the first frame update
@@ -31,7 +29,7 @@ public class TetherIndicator : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(Offense.position, maxTetherDistance);
+        Gizmos.DrawWireSphere(Offense.position, MaxTetherDistance);
         Gizmos.color = Color.yellow;
     }
 
@@ -58,7 +56,7 @@ public class TetherIndicator : MonoBehaviour
     }
 
     void Coloring(float distance) {
-        distance = (distance - minTetherDistance) / (maxTetherDistance - minTetherDistance);
+        distance = (distance - MinTetherDistance) / (MaxTetherDistance - MinTetherDistance);
         _tetherRenderer.material.SetColor("_Color", Color.Lerp(Color.green, Color.red, distance));
     }
 }

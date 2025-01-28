@@ -205,8 +205,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 901862705779412091}
   speed: 10
-  maxDistanceFromDefense: {fileID: 0}
   offenseCamera: {fileID: 3247215931657086225}
+  tetherDistance: 10
+  tetherPullForceFactor: 1
+  tetherDistanceBuffer: 1
 --- !u!114 &5616537860721076988
 MonoBehaviour:
   m_ObjectHideFlags: 0

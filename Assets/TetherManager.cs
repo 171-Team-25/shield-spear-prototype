@@ -3,25 +3,34 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Assertions;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Users;
 
 public class TetherManager : MonoBehaviour
 {
-    List<TetherIndicator> tetherIndicators = new();
+    public TetherManager Instance { get; private set; }
     public GameObject tetherIndicatorPrefab;
     public float pollingRate = 0.5f;
-    private Coroutine pollingRoutine;
+    private Coroutine _pollingRoutine;
+    private List<TetherIndicator> _tetherIndicators = new();
+
+    public void Start()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+        {
+            Debug.LogError("There should only be one TetherIndicator singleton");
+            Destroy(this);
+        }
+    }
     
     private void OnEnable()
     {
-        pollingRoutine = StartCoroutine(GetPlayers());
+        _pollingRoutine = StartCoroutine(GetPlayers());
     }
 
     private void OnDisable()
     {
-        StopCoroutine(pollingRoutine);
+        StopCoroutine(_pollingRoutine);
     }
 
     private IEnumerator GetPlayers()
@@ -37,22 +46,23 @@ public class TetherManager : MonoBehaviour
             var offenseIndex = 0;
             while (pairs > 0 && defenseIndex < defense.Length && offenseIndex < offense.Length)
             {
-                if (tetherIndicators.Any(tether => tether.Defense == defense[defenseIndex].transform))
+                if (_tetherIndicators.Any(tether => tether.Defense == defense[defenseIndex].transform))
                 {
                     defenseIndex++;
                     continue;
                 }
 
-                if (tetherIndicators.Any(tether => tether.Offense == offense[offenseIndex].transform))
+                if (_tetherIndicators.Any(tether => tether.Offense == offense[offenseIndex].transform))
                 {
                     offenseIndex++;
                     continue;
                 }
-                var tether = Instantiate(tetherIndicatorPrefab, this.transform);
+                var tether = Instantiate(tetherIndicatorPrefab, transform);
                 var tetherIndicator = tether.GetComponent<TetherIndicator>();
                 tetherIndicator.Offense = offense[offenseIndex].transform;
                 tetherIndicator.Defense = defense[defenseIndex].transform;
-                tetherIndicators.Add(tetherIndicator);
+                tetherIndicator.MaxTetherDistance = tetherIndicator.Offense.GetComponent<Movement>().TetherDistance;
+                _tetherIndicators.Add(tetherIndicator);
                 pairs--;
             }
             yield return new WaitForSeconds(pollingRate);
