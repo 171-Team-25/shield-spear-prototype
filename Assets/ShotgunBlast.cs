@@ -12,6 +12,7 @@ public class ShotgunBlast : MonoBehaviour
     private float _fireCooldown;
     private PlayerInput _playerInput;
     [SerializeField] float blastAngleDegrees = 90f;
+    [SerializeField] float numOfBullets = 5f;
     void Start()
     {
         _fireCooldown = 0;
@@ -21,12 +22,12 @@ public class ShotgunBlast : MonoBehaviour
             bulletPool = bulletManager.GetComponent<BulletPool>();
         }
         _playerInput = GetComponent<PlayerInput>();
+
     }
 
     void Update()
     {
         _fireCooldown -= Time.deltaTime;
-
         if (_fireCooldown <= 0 && _playerInput.actions["Ability2"].ReadValue<float>() > 0)
         {
             Shoot();
@@ -35,13 +36,13 @@ public class ShotgunBlast : MonoBehaviour
 
     void Shoot()
     {
-        for (int i = 0; i < bulletPool.poolSize; i++) {
+        for (int i = 0; i < numOfBullets; i++) {
             GameObject bullet = bulletPool.GetBullet();
             if (bullet != null)
             {
                 bullet.transform.position = firePoint.position;
                 bullet.transform.rotation = firePoint.rotation;
-                bullet.transform.Rotate(0,(-blastAngleDegrees/2) + (blastAngleDegrees/(bulletPool.poolSize - 1) * i),0);
+                bullet.transform.Rotate(0,(-blastAngleDegrees/2) + (blastAngleDegrees/(numOfBullets - 1) * i),0);
             }
         }
         _fireCooldown = fireRate;

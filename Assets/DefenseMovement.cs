@@ -9,10 +9,11 @@ public class DefenseMovement : MonoBehaviour
     [SerializeField]
     Rigidbody body;
 
-    [SerializeField]
-    int speed = 1;
+    public float speed = 1;
     public Camera defenseCamera;
     private PlayerInput _playerInput;
+
+    public bool isBoosted = false;
 
     // Start is called before the first frame update
     void Start()

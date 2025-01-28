@@ -17,7 +17,7 @@ public class BulletBehavior : MonoBehaviour
     public int damage = 50;
     private int baseDamage;
 
-    private string[] TagsOfBulletReseters =
+    protected string[] TagsOfBulletReseters =
     {
         "Offense",
         "Defense",
@@ -27,7 +27,7 @@ public class BulletBehavior : MonoBehaviour
     };
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         baseDamage = damage;
         baseSpeed = speed;
@@ -47,7 +47,7 @@ public class BulletBehavior : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected void OnTriggerEnter(Collider other)
     {
         for (int i = 0; i < TagsOfBulletReseters.Length; i++)
         {
@@ -67,18 +67,18 @@ public class BulletBehavior : MonoBehaviour
                     }
                     break;
                 }
-                resetBullet();
                 Health enemyHealth = other.gameObject.GetComponent<Health>();
                 if (enemyHealth != null)
                 {
                     enemyHealth.takeDamage(damage);
                 }
+                resetBullet();
                 break;
             }
         }
     }
 
-    private void resetBullet()
+    protected void resetBullet()
     {
         bulletPool.ReturnBullet(gameObject);
         _lifeTimer = lifeTime;
