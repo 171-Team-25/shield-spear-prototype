@@ -33,7 +33,7 @@ jobs:
 
   build:
     name: Build project
-    needs: Test Project
+    needs: test
     runs-on: ubuntu-latest
     steps:
       # Checkout
