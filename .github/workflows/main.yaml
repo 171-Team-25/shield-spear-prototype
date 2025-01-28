@@ -64,8 +64,8 @@ jobs:
       # Output
       - uses: actions/upload-artifact@v4
         with:
-          name: Build
-          path: build
+          name: github-pages
+          path: github-pages
 
   deploy:
     needs: build
