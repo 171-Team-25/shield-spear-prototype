@@ -62,7 +62,8 @@ public class DashAbility : MonoBehaviour, IAbility
         var dashSpeed = dashDistance / dashTimer / Time.fixedDeltaTime;
         var dashDirection = gameObject.transform.forward;
         var startPosition = gameObject.transform.position;
-
+        
+        Cooldown.StartCooldown();
         AbilityStarted?.Invoke(this, new AbilityEventArgs { Ability = this, Owner = gameObject });
         foreach (var effect in Effects)
         {

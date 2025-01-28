@@ -19,21 +19,27 @@ public class AbilityCooldown : MonoBehaviour
         CooldownStarted += (s, e) =>
         {
             Running = true;
+            Debug.Log("Cooldown started");
         };
         CooldownEnded += (s, e) =>
         {
             Running = false;
+            Debug.Log("Cooldown ended");
         };
     }
 
     public void StartCooldown(bool resetCurrentCooldown = true)
     {
-        if (resetCurrentCooldown && _cooldownRoutine != null)
-            StopCoroutine(_cooldownRoutine);
-        else
+        switch (resetCurrentCooldown)
         {
-            _cooldownRoutine = StartCoroutine(Cooldown());
+            case false when _cooldownRoutine != null:
+                return;
+            case true when _cooldownRoutine != null:
+                StopCoroutine(_cooldownRoutine);
+                break;
         }
+
+        _cooldownRoutine = StartCoroutine(Cooldown());
     }
 
     private IEnumerator Cooldown()
