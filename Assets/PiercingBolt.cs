@@ -90,6 +90,7 @@ public class PiercingBolt : MonoBehaviour
         piercingBolt.transform.SetParent(transform);
         piercingBolt.transform.localRotation = Quaternion.Euler(0, 0, 0);
         piercingBolt.transform.localPosition = new Vector3(0,0,0);
+        piercingBolt.transform.Find("PiercingBoltHitbox").GetComponent<PiercingBoltDamage>().hitEntities.Clear();
     }
 
     void ExtendBolt(float height) {

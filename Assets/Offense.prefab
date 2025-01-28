@@ -153,7 +153,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8741370485556174827}
@@ -702,6 +702,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8741370485556174827}
   - component: {fileID: 7938332700363573849}
+  - component: {fileID: 4429351205852843944}
+  - component: {fileID: 4620673423049908959}
   m_Layer: 0
   m_Name: PiercingBoltHitbox
   m_TagString: Untagged
@@ -744,10 +746,37 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4429351205852843944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5430512543770047059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a90ccdbb7f446a3438224fa6a07cb224, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitEntities: []
+  damage: 150
+--- !u!114 &4620673423049908959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5430512543770047059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6301a95f7a87bf64d9f665231e19b392, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTeam: 0
 --- !u!1 &6127082285238493802
 GameObject:
   m_ObjectHideFlags: 0

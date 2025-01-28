@@ -40,7 +40,7 @@ public class WeaknessZone : MonoBehaviour
             zoneReady = false;
             transform.Find("WeaknessZoneVisual").gameObject.SetActive(true);
             transform.localPosition = new Vector3(0, -1, 4);
-            Invoke("ResetZone", 2);
+            Invoke("ResetZone", 3);
             transform.SetParent(null);
         }
     }
