@@ -733,13 +733,53 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7640558969779515294, guid: bd828f28f51cdb543ab7af63eaadd6f1, type: 3}
+      propertyPath: m_TagString
+      value: TerrainWall
+      objectReference: {fileID: 0}
+    - target: {fileID: -7146521406498821007, guid: bd828f28f51cdb543ab7af63eaadd6f1, type: 3}
+      propertyPath: m_TagString
+      value: TerrainWall
+      objectReference: {fileID: 0}
+    - target: {fileID: -6763858364670572316, guid: bd828f28f51cdb543ab7af63eaadd6f1, type: 3}
+      propertyPath: m_TagString
+      value: TerrainWall
+      objectReference: {fileID: 0}
+    - target: {fileID: -2045257923548263128, guid: bd828f28f51cdb543ab7af63eaadd6f1, type: 3}
+      propertyPath: m_TagString
+      value: TerrainWall
+      objectReference: {fileID: 0}
+    - target: {fileID: -1599826595754709761, guid: bd828f28f51cdb543ab7af63eaadd6f1, type: 3}
+      propertyPath: m_TagString
+      value: TerrainWall
+      objectReference: {fileID: 0}
     - target: {fileID: -516098083770646512, guid: bd828f28f51cdb543ab7af63eaadd6f1, type: 3}
       propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
+    - target: {fileID: -466329591000292508, guid: bd828f28f51cdb543ab7af63eaadd6f1, type: 3}
+      propertyPath: m_TagString
+      value: TerrainWall
+      objectReference: {fileID: 0}
+    - target: {fileID: -208595431880416365, guid: bd828f28f51cdb543ab7af63eaadd6f1, type: 3}
+      propertyPath: m_TagString
+      value: TerrainWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 281855664364225751, guid: bd828f28f51cdb543ab7af63eaadd6f1, type: 3}
+      propertyPath: m_TagString
+      value: TerrainWall
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: bd828f28f51cdb543ab7af63eaadd6f1, type: 3}
       propertyPath: m_Name
       value: protomap1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8009987137999418058, guid: bd828f28f51cdb543ab7af63eaadd6f1, type: 3}
+      propertyPath: m_TagString
+      value: TerrainWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416272007918961125, guid: bd828f28f51cdb543ab7af63eaadd6f1, type: 3}
+      propertyPath: m_TagString
+      value: TerrainWall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

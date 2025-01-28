@@ -11,6 +11,7 @@ TagManager:
   - Shield
   - BoostWall
   - WeaknessZone
+  - TerrainWall
   layers:
   - Default
   - TransparentFX

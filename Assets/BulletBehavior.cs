@@ -24,6 +24,7 @@ public class BulletBehavior : MonoBehaviour
         "Enemy",
         "Shield",
         "BoostWall",
+        "TerrainWall"
     };
 
     // Start is called before the first frame update
