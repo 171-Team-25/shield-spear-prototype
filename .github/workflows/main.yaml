@@ -60,6 +60,7 @@ jobs:
         with:
           targetPlatform: WebGL
           allowDirtyBuild: true
+          buildPath: build/WebGL
 
       - name: Reorganize WebGL output using copy
         run: |
@@ -73,7 +74,7 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           name: github-pages
-          path: build/
+          path: build/WebGL
 
       - name: List build folder contents
         run: ls -R build/WebGL/
