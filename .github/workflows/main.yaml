@@ -62,14 +62,6 @@ jobs:
           allowDirtyBuild: true
           buildPath: build/WebGL
 
-      - name: Reorganize WebGL output using copy
-        run: |
-          mkdir -p build/WebGL/temp
-          cp -r build/WebGL/WebGL/* build/WebGL/temp/
-          rm -rf build/WebGL/WebGL
-          mv build/WebGL/temp/* build/WebGL/
-          rm -rf build/WebGL/temp
-
       # Output
       - uses: actions/upload-pages-artifact@v3
         with:
