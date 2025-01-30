@@ -65,7 +65,7 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           name: github-pages
-          path: build/WebGL/
+          path: build/
 
       - name: List build folder contents
         run: ls -R build/WebGL/
@@ -89,9 +89,6 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: github-pages
-
-    - name: List artifact contents
-      run: ls -R github-pages/  
 
     - name: Deploy to GitHub Pages
       id: deployment
