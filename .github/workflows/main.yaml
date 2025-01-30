@@ -61,6 +61,11 @@ jobs:
           targetPlatform: WebGL
           allowDirtyBuild: true
 
+      - name: Reorganize WebGL output
+        run: |
+          mv build/WebGL/WebGL/* build/WebGL/
+          rm -r build/WebGL/WebGL
+
       # Output
       - uses: actions/upload-pages-artifact@v3
         with:
