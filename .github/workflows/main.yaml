@@ -63,6 +63,7 @@ jobs:
 
       - name: Reorganize WebGL output
         run: |
+          chmod -R u+rw build/WebGL/WebGL
           mv build/WebGL/WebGL/* build/WebGL/
           rm -r build/WebGL/WebGL
 
