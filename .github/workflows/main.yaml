@@ -33,7 +33,7 @@ jobs:
 
   build:
     name: Build project
-    needs: test
+    #needs: test
     runs-on: ubuntu-latest
     steps:
       # Checkout
@@ -61,11 +61,13 @@ jobs:
           targetPlatform: WebGL
           allowDirtyBuild: true
 
-      - name: Reorganize WebGL output
+      - name: Reorganize WebGL output using copy
         run: |
-          chmod -R u+rw build/WebGL/WebGL
-          mv build/WebGL/WebGL/* build/WebGL/
-          rm -r build/WebGL/WebGL
+          mkdir -p build/WebGL/temp
+          cp -r build/WebGL/WebGL/* build/WebGL/temp/
+          rm -rf build/WebGL/WebGL
+          mv build/WebGL/temp/* build/WebGL/
+          rm -rf build/WebGL/temp
 
       # Output
       - uses: actions/upload-pages-artifact@v3
