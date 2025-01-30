@@ -67,6 +67,9 @@ jobs:
           name: github-pages
           path: build/WebGL/
 
+      - name: List build folder contents
+        run: ls -R build/WebGL/
+
   deploy:
     needs: build
     permissions:
@@ -82,10 +85,13 @@ jobs:
     # Specify runner + deployment step
     runs-on: ubuntu-latest
     steps:
-   # - name: Download artifact
-   #   uses: actions/download-artifact@v4
-   #   with:
-   #     name: github-pages
+    - name: Download artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: github-pages
+
+    - name: List artifact contents
+        run: ls -R github-pages/
 
     - name: Deploy to GitHub Pages
       id: deployment
