@@ -80,8 +80,8 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     # Specify runner + deployment step
-    #runs-on: ubuntu-latest
-   # steps:
+    runs-on: ubuntu-latest
+    steps:
    # - name: Download artifact
    #   uses: actions/download-artifact@v4
    #   with:
