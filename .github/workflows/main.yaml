@@ -91,7 +91,7 @@ jobs:
         name: github-pages
 
     - name: List artifact contents
-        run: ls -R github-pages/
+      run: ls -R github-pages/  
 
     - name: Deploy to GitHub Pages
       id: deployment
