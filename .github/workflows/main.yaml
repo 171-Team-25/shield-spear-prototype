@@ -80,12 +80,12 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     # Specify runner + deployment step
-    runs-on: ubuntu-latest
-    steps:
-    - name: Download artifact
-      uses: actions/download-artifact@v4
-      with:
-        name: github-pages
+    #runs-on: ubuntu-latest
+   # steps:
+   # - name: Download artifact
+   #   uses: actions/download-artifact@v4
+   #   with:
+   #     name: github-pages
 
     - name: Deploy to GitHub Pages
       id: deployment
