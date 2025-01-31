@@ -110,5 +110,8 @@ public class Health : MonoBehaviour
             transform.Find("WeaknessZoneHitbox").GetComponent<WeaknessZone>().enabled = true;
             transform.Find("KnockbackHitbox").GetComponent<KnockbackPunch>().enabled = true;
         }
+        if (healthbar != null) {
+            healthbar.UpdateHealthBar(baseHealth, currentHealth);
+        }
     }
 }
