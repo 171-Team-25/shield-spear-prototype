@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class WeaknessZone : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class WeaknessZone : MonoBehaviour
     private GameObject zoneOwner;
     private List<GameObject> hitEntities = new List<GameObject>();
     private string[] TagsOfHittables = { "Offense", "Defense", "Enemy" };
+    [SerializeField] Text abilityDisplay;
+
 
     // Start is called before the first frame update
     void Start()
@@ -42,11 +45,13 @@ public class WeaknessZone : MonoBehaviour
             transform.localPosition = new Vector3(0, -1, 4);
             Invoke("ResetZone", 3);
             transform.SetParent(null);
+            abilityDisplay.enabled = false;
         }
     }
 
     void ResetZone()
     {
+        abilityDisplay.enabled = true;
         zoneReady = true;
         transform.Find("WeaknessZoneVisual").gameObject.SetActive(false);
         transform.SetParent(zoneOwner.transform);

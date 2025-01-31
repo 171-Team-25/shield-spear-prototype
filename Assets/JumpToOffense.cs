@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.VisualScripting;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class JumpToOffense : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class JumpToOffense : MonoBehaviour
     private AbilitySystem abilitySystem;
     public float jumpDurationS;
     [SerializeField] float minimumDistanceToOffense = 3f;
+    [SerializeField] Text abilityDisplay;
+
 
     // Start is called before the first frame update
     void Start()
@@ -43,9 +46,12 @@ public class JumpToOffense : MonoBehaviour
                 jumpCooldown = jumpRate;
                 StartCoroutine(JumpToTeammate());
             }
+            abilityDisplay.enabled = false;
         }
         jumpCooldown -= Time.deltaTime;
-
+        if (!abilityDisplay.enabled && jumpCooldown <= 0) {
+            abilityDisplay.enabled = true;
+        }
     }
 
     void findTeammate() {

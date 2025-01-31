@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class KnockbackPunch : MonoBehaviour
 {
@@ -32,6 +33,9 @@ public class KnockbackPunch : MonoBehaviour
     private string[] TagsOfHittables = { "Offense", "Defense", "Enemy" };
     private AbilityEffect disableMovement;
 
+    [SerializeField] Text abilityDisplay;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,8 +52,9 @@ public class KnockbackPunch : MonoBehaviour
         if (knockbackCooldown <= 0 && _playerInput.actions["Ability4"].ReadValue<float>() > 0)
         {
             charge = Mathf.Min(4, charge + (chargeRate * Time.deltaTime));
-            Debug.Log("charge" + charge);
             visualizer.transform.localScale = new Vector3(1, (maxHeight + charge) / 2, 1);
+            
+            abilityDisplay.enabled = false;
         }
         if (
             !isKnockbacking
@@ -60,7 +65,6 @@ public class KnockbackPunch : MonoBehaviour
             isKnockbacking = true;
             knockbackCooldown = knockbackRate;
             knockbackTimer = 0;
-            Debug.Log("charge release");
         }
         if (isKnockbacking)
         {
@@ -93,6 +97,9 @@ public class KnockbackPunch : MonoBehaviour
         if (!isKnockbacking && charge <= 0)
         {
             knockbackCooldown -= Time.deltaTime;
+        }
+        if (knockbackCooldown <= 0 && !abilityDisplay.enabled && charge <= 0) {
+            abilityDisplay.enabled = true;
         }
     }
 
