@@ -425,10 +425,10 @@ MonoBehaviour:
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Jump to Offense
+  m_Text: Jump to Offense (RBumper)
 --- !u!1 &2271093777914748167
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,6 +770,8 @@ MonoBehaviour:
   baseHealth: 200
   currentHealth: 0
   IsWeakened: 0
+  isDead: 0
+  timeDeadS: 5
   abilityDisplay: {fileID: 5258259815882559331}
 --- !u!1 &3322814870074314752
 GameObject:
@@ -922,10 +924,10 @@ MonoBehaviour:
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Weakness Zone
+  m_Text: Weakness Zone (Top Button)
 --- !u!1 &3703417335789676551
 GameObject:
   m_ObjectHideFlags: 0
@@ -1001,10 +1003,10 @@ MonoBehaviour:
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Shield
+  m_Text: Shield (LTrigger)
 --- !u!1 &3980836640888498890
 GameObject:
   m_ObjectHideFlags: 0
@@ -1080,10 +1082,10 @@ MonoBehaviour:
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Boost and Block Wall
+  m_Text: Boost and Block Wall (Left Button)
 --- !u!1 &4173691644968963293
 GameObject:
   m_ObjectHideFlags: 0
@@ -1529,6 +1531,8 @@ MonoBehaviour:
   baseHealth: 5000
   currentHealth: 0
   IsWeakened: 0
+  isDead: 0
+  timeDeadS: 5
 --- !u!114 &5240138736660916969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1799,10 +1803,10 @@ MonoBehaviour:
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Knockback Punch
+  m_Text: Knockback Punch (LBumper)
 --- !u!1 &8411606533121870284
 GameObject:
   m_ObjectHideFlags: 0

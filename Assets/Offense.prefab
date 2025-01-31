@@ -114,7 +114,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 100, y: 25}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5793524533058172803
 CanvasRenderer:
@@ -154,10 +154,10 @@ MonoBehaviour:
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Dash
+  m_Text: Dash (Right Mouse/Left Shoulder)
 --- !u!1 &1558948810249900463
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,7 +239,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 100, y: 50}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3357677991000350510
 CanvasRenderer:
@@ -279,10 +279,10 @@ MonoBehaviour:
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Piercing Bolt
+  m_Text: Piercing Bolt (E/Top Button)
 --- !u!1 &2654940174495383823
 GameObject:
   m_ObjectHideFlags: 0
@@ -938,6 +938,8 @@ MonoBehaviour:
   baseHealth: 300
   currentHealth: 0
   IsWeakened: 0
+  isDead: 0
+  timeDeadS: 5
 --- !u!1 &3337884455848539593
 GameObject:
   m_ObjectHideFlags: 0
@@ -1084,7 +1086,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 100, y: 75}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &733777202915261226
 CanvasRenderer:
@@ -1124,10 +1126,10 @@ MonoBehaviour:
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Shotgun
+  m_Text: Shotgun (Q/Left Button)
 --- !u!1 &5430512543770047059
 GameObject:
   m_ObjectHideFlags: 0
@@ -1331,7 +1333,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 100, y: 100}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2699076232758653565
 CanvasRenderer:
@@ -1371,10 +1373,10 @@ MonoBehaviour:
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Tug
+  m_Text: Tug (LShift/LBumber)
 --- !u!1 &8388955072549506021
 GameObject:
   m_ObjectHideFlags: 0
