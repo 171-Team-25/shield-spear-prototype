@@ -67,11 +67,21 @@ public class JoinGameSystem : MonoBehaviour
         {
             if (team == 1)
             {
+                if (playerInput.gameObject.CompareTag("Offense")) {
+                    playerInput.gameObject.transform.position = new UnityEngine.Vector3(-25, 0, -11);
+                } else {
+                    playerInput.gameObject.transform.position = new UnityEngine.Vector3(-25, 0, -7);
+                }
                 indicatorRenderer.material.SetColor("_Color", Color.blue);
                 playersTeamIndicator.transform.localPosition = new UnityEngine.Vector3(0, -1, 0);
             }
             else if (team == 2)
             {
+                if (playerInput.gameObject.CompareTag("Offense")) {
+                    playerInput.gameObject.transform.position = new UnityEngine.Vector3(25, 0, 11);
+                } else {
+                    playerInput.gameObject.transform.position = new UnityEngine.Vector3(25, 0, 7);
+                }
                 indicatorRenderer.material.SetColor("_Color", Color.red);
                 playersTeamIndicator.transform.localPosition = new UnityEngine.Vector3(0, -1.1f, 0);
             }
