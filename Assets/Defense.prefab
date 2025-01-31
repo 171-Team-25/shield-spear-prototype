@@ -842,6 +842,11 @@ MonoBehaviour:
   body: {fileID: 8154782601543555960}
   speed: 5
   defenseCamera: {fileID: 8507331562549773993}
+  isBoosted: 0
+  tetherDistance: 10
+  tetherPullForceFactor: 1.9
+  maxTetherPullForce: 50
+  tetherDistanceBuffer: 1
 --- !u!114 &99466781085298317
 MonoBehaviour:
   m_ObjectHideFlags: 0

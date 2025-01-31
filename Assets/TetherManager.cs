@@ -59,10 +59,10 @@ public class TetherManager : MonoBehaviour
                 }
                 var tether = Instantiate(tetherIndicatorPrefab, transform);
                 var tetherIndicator = tether.GetComponent<TetherIndicator>();
-                offense[offenseIndex].GetComponent<Movement>().Tether = tetherIndicator;
+                defense[defenseIndex].GetComponent<DefenseMovement>().Tether = tetherIndicator;
                 tetherIndicator.Offense = offense[offenseIndex].transform;
                 tetherIndicator.Defense = defense[defenseIndex].transform;
-                tetherIndicator.MaxTetherDistance = tetherIndicator.Offense.GetComponent<Movement>().TetherDistance;
+                tetherIndicator.MaxTetherDistance = tetherIndicator.Defense.GetComponent<DefenseMovement>().TetherDistance;
                 _tetherIndicators.Add(tetherIndicator);
                 pairs--;
             }

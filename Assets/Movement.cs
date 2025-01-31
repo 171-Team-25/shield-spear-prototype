@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,13 +8,12 @@ public class Movement : MonoBehaviour
     [SerializeField] int speed = 1;
     [SerializeField] public Camera offenseCamera;
     private PlayerInput _playerInput;
-    [SerializeField] private float tetherDistance = 100f;
-    [SerializeField] private float tetherPullForceFactor = 1f;
-    [SerializeField] private float maxTetherPullForce = 50f;
-    [SerializeField] private float tetherDistanceBuffer = 50f;
-    public float TetherDistance { get => tetherDistance; set => tetherDistance = value; }
-    public TetherIndicator Tether { get; set; }
-    
+    // [SerializeField] private float tetherDistance = 100f;
+    // [SerializeField] private float tetherPullForceFactor = 1f;
+    // [SerializeField] private float maxTetherPullForce = 50f;
+    // [SerializeField] private float tetherDistanceBuffer = 50f;
+    // public float TetherDistance { get => tetherDistance; set => tetherDistance = value; }
+    // public TetherIndicator Tether { get; set; }
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +32,7 @@ public class Movement : MonoBehaviour
         var currentYVelocity = body.velocity.y;
         var inputDirection = _playerInput.actions["Move"].ReadValue<Vector2>();
         body.velocity = new Vector3(inputDirection.x * speed, 0, inputDirection.y * speed);
-        ApplyTether();
+        //ApplyTether();
     }
 
     private void FixedUpdate()
@@ -71,7 +68,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private void ApplyTether() {
+    /*private void ApplyTether() {
         if (!Tether)
             return;
         else
@@ -95,5 +92,5 @@ public class Movement : MonoBehaviour
         force = Mathf.Min(force, maxTetherPullForce);
         body.velocity += direction * force;
         Debug.Log(distance + " " + force);
-    }
+    }*/
 }
