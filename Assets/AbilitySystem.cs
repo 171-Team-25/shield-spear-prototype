@@ -47,6 +47,9 @@ public class AbilitySystem : MonoBehaviour
 
     public bool UseAbility(int abilityIndex)
     {
+        if (GetComponent<Health>().isDead) {
+            return false;
+        }
         if (Abilities.Count <= abilityIndex)
             return false;
         var ability = Abilities[abilityIndex];
@@ -58,6 +61,8 @@ public class AbilitySystem : MonoBehaviour
             effect.EffectStarted += OnEffectStarted;
             effect.EffectEnded += OnEffectEnded;
         }
+        Debug.Log("activate ability");
+        
         ability.Activate();
         return true;
     }
