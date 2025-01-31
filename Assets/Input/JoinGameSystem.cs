@@ -15,6 +15,9 @@ public class JoinGameSystem : MonoBehaviour
     public GameObject offensePrefab;
     public GameObject defensePrefab;
     public GameObject teamIndicatorPrefab;
+    [SerializeField] GameObject team1SpawnPoint;
+    [SerializeField] GameObject team2SpawnPoint;
+
 
     private void Start()
     {
@@ -69,10 +72,12 @@ public class JoinGameSystem : MonoBehaviour
                 case 1:
                     indicatorRenderer.material.SetColor("_Color", Color.blue);
                     playersTeamIndicator.transform.localPosition = new UnityEngine.Vector3(0, -1, 0);
+                    playerInput.gameObject.transform.position = team1SpawnPoint.transform.position;
                     break;
                 case 2:
                     indicatorRenderer.material.SetColor("_Color", Color.red);
-                    playersTeamIndicator.transform.localPosition = new UnityEngine.Vector3(0, -1.1f, 0);
+                    playersTeamIndicator.transform.localPosition = new UnityEngine.Vector3(0, -0.9f, 0);
+                    playerInput.gameObject.transform.position = team2SpawnPoint.transform.position;
                     break;
             }
         }
