@@ -78,6 +78,14 @@ public class Health : MonoBehaviour
             GetComponent<TugDefense>().enabled = false;
             GetComponent<ShotgunBlast>().enabled = false;
             GetComponent<PiercingBolt>().enabled = false;
+        } else if (tag == "Defense") {
+            GetComponent<Collider>().enabled = false;
+            transform.Find("MeleeHitbox").GetComponent<MeleeAttack>().enabled = false;
+            GetComponent<JumpToOffense>().enabled = false;
+            transform.Find("ShieldHitbox").GetComponent<Shield>().enabled = false;
+            transform.Find("BoostNBlockHitbox").GetComponent<BlockNBoostWall>().enabled = false;
+            transform.Find("WeaknessZoneHitbox").GetComponent<WeaknessZone>().enabled = false;
+            transform.Find("KnockbackHitbox").GetComponent<KnockbackPunch>().enabled = false;
         }
     }
 
@@ -93,6 +101,14 @@ public class Health : MonoBehaviour
             GetComponent<TugDefense>().enabled = true;
             GetComponent<ShotgunBlast>().enabled = true;
             GetComponent<PiercingBolt>().enabled = true;
+        } else if (tag == "Defense") {
+            GetComponent<Collider>().enabled = true;
+            transform.Find("MeleeHitbox").GetComponent<MeleeAttack>().enabled = true;
+            GetComponent<JumpToOffense>().enabled = true;
+            transform.Find("ShieldHitbox").GetComponent<Shield>().enabled = true;
+            transform.Find("BoostNBlockHitbox").GetComponent<BlockNBoostWall>().enabled = true;
+            transform.Find("WeaknessZoneHitbox").GetComponent<WeaknessZone>().enabled = true;
+            transform.Find("KnockbackHitbox").GetComponent<KnockbackPunch>().enabled = true;
         }
     }
 }

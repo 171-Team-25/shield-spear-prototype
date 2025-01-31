@@ -38,7 +38,6 @@ public class DashAbility : MonoBehaviour, IAbility
 
     public void Activate()
     {
-        Debug.Log("activate dash");
         if (Cooldown.Running)
             return;
 

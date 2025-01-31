@@ -60,9 +60,7 @@ public class AbilitySystem : MonoBehaviour
         {
             effect.EffectStarted += OnEffectStarted;
             effect.EffectEnded += OnEffectEnded;
-        }
-        Debug.Log("activate ability");
-        
+        }        
         ability.Activate();
         return true;
     }
