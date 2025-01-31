@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+
 
 public class PiercingBolt : MonoBehaviour
 {
@@ -27,6 +29,7 @@ public class PiercingBolt : MonoBehaviour
     private GameObject boltHitbox;
     private CapsuleCollider boltCollider;
     private GameObject piercingBolt;
+    [SerializeField] Text abilityDisplay;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +53,9 @@ public class PiercingBolt : MonoBehaviour
     void Update()
     {
         if (boltCooldown <= 0 && !isReadying && _playerInput.actions["Ability3"].ReadValue<float>() > 0) {
+            if (abilityDisplay.enabled) {
+                abilityDisplay.enabled = false;
+            }
             isReadying = true;
             piercingBolt.transform.SetParent(null);
         }
@@ -91,6 +97,9 @@ public class PiercingBolt : MonoBehaviour
         piercingBolt.transform.localRotation = Quaternion.Euler(0, 0, 0);
         piercingBolt.transform.localPosition = new Vector3(0,0,0);
         piercingBolt.transform.Find("PiercingBoltHitbox").GetComponent<PiercingBoltDamage>().hitEntities.Clear();
+        if (!abilityDisplay.enabled) {
+            abilityDisplay.enabled = true;
+        }
     }
 
     void ExtendBolt(float height) {

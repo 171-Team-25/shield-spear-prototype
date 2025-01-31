@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+
 
 public class TugDefense : MonoBehaviour
 {
@@ -16,6 +18,8 @@ public class TugDefense : MonoBehaviour
     private Rigidbody defenseRigidbody;
     public float tugDurationS;
     [SerializeField] float minimumDistanceToDefense = 3f;
+    [SerializeField] Text abilityDisplay;
+
 
     // Start is called before the first frame update
     void Start()
@@ -30,10 +34,15 @@ public class TugDefense : MonoBehaviour
     void Update()
     {
         if (tugCooldown <= 0 && _playerInput.actions["Ability4"].ReadValue<float>() > 0) {
-            Debug.Log("offense activate ability4");
+            if (abilityDisplay.enabled) {
+                abilityDisplay.enabled = false;
+            } 
             StartCoroutine(TugTeammate());  
         }
         tugCooldown -= Time.deltaTime;
+        if (tugCooldown <= 0 && !abilityDisplay.enabled) {
+            abilityDisplay.enabled = true;
+        }
     }
 
     void findTeammate() {

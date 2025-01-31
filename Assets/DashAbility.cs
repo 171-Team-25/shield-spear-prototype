@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DashAbility : MonoBehaviour, IAbility
 {
@@ -26,6 +27,8 @@ public class DashAbility : MonoBehaviour, IAbility
     [NonSerialized]
     public AbilityCooldown Cooldown;
 
+    [SerializeField] Text abilityDisplay;
+
     public void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -39,6 +42,9 @@ public class DashAbility : MonoBehaviour, IAbility
             return;
 
         StartCoroutine(Dash());
+        if (abilityDisplay.enabled) {
+            abilityDisplay.enabled = false;
+        }
     }
 
     public AbilityActivationType GetActivationType()
@@ -80,5 +86,11 @@ public class DashAbility : MonoBehaviour, IAbility
             effect.EndEffect();
         }
         AbilityEnded?.Invoke(this, new AbilityEventArgs { Ability = this, Owner = gameObject });
+    }
+
+    void Update() {
+        if (!Cooldown.Running && !abilityDisplay.enabled) {
+            abilityDisplay.enabled = true;
+        }
     }
 }
