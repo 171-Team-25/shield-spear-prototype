@@ -10,9 +10,14 @@ public class Health : MonoBehaviour
 
     public bool IsWeakened = false;
 
+    private Healthbar healthbar;
+
     // Start is called before the first frame update
     void Start()
     {
+        if (transform.Find("HealthbarCanvas") != null) {
+            healthbar = transform.Find("HealthbarCanvas").gameObject.GetComponent<Healthbar>();
+        }
         currentHealth = baseHealth;
     }
 
@@ -33,5 +38,8 @@ public class Health : MonoBehaviour
         }
         Debug.Log(this + "takes " + damage + " damage");
         currentHealth -= damage;
+        if (healthbar != null) {
+            healthbar.UpdateHealthBar(baseHealth, currentHealth);
+        }
     }
 }

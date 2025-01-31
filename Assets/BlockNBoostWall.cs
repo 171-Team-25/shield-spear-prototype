@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class BlockNBoostWall : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class BlockNBoostWall : MonoBehaviour
     private PlayerInput _playerInput;
     private bool wallReady = true;
     private GameObject wallOwner;
+    
+    [SerializeField] Text abilityDisplay;
+
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +63,7 @@ public class BlockNBoostWall : MonoBehaviour
             boxCollider.enabled = true;
             Invoke("ResetWall", 2);
             transform.SetParent(null);
+            abilityDisplay.enabled = false;
         }
     }
 
@@ -69,5 +74,6 @@ public class BlockNBoostWall : MonoBehaviour
         transform.SetParent(wallOwner.transform);
         boxCollider.enabled = false;
         transform.localRotation = Quaternion.Euler(0, 0, 0);
+        abilityDisplay.enabled = true;
     }
 }

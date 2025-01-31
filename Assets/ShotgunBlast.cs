@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class ShotgunBlast : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class ShotgunBlast : MonoBehaviour
     private PlayerInput _playerInput;
     [SerializeField] float blastAngleDegrees = 90f;
     [SerializeField] float numOfBullets = 5f;
+    [SerializeField] Text abilityDisplay;
+
     void Start()
     {
         _fireCooldown = 0;
@@ -30,7 +33,13 @@ public class ShotgunBlast : MonoBehaviour
         _fireCooldown -= Time.deltaTime;
         if (_fireCooldown <= 0 && _playerInput.actions["Ability2"].ReadValue<float>() > 0)
         {
+            if (abilityDisplay.enabled) {
+                abilityDisplay.enabled = false;
+            }
             Shoot();
+        }
+        if (_fireCooldown <= 0 && !abilityDisplay.enabled) {
+            abilityDisplay.enabled = true;
         }
     }
 
