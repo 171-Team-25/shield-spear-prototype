@@ -93,4 +93,9 @@ public class DashAbility : MonoBehaviour, IAbility
             abilityDisplay.enabled = true;
         }
     }
+
+    public void Release()
+    {
+        return;
+    }
 }

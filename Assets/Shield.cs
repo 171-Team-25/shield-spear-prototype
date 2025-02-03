@@ -15,16 +15,12 @@ public class Shield : MonoBehaviour
     [SerializeField]
     float colliderWidth = 5f;
     private GameObject shieldVisual;
-    private PlayerInput _playerInput;
-    private bool shieldUp = false;
-    private bool pastShieldUp = true;
-    private Vector3 shieldUpPos;
+
+    public bool shieldUp = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        _playerInput = transform.parent.GetComponent<PlayerInput>();
-        shieldUpPos = transform.localPosition;
         boxCollider = this.GetComponent<BoxCollider>();
         if (boxCollider != null)
         {
@@ -37,7 +33,7 @@ public class Shield : MonoBehaviour
             shieldVisual.transform.localPosition = new Vector3(0, colliderHeight / 2 - 1, 0);
             shieldVisual.transform.localScale = new Vector3(colliderWidth, colliderHeight, 1);
         }
-        CurrentTeam shieldbearersTeam = transform.parent.gameObject.GetComponent<CurrentTeam>();
+        CurrentTeam shieldbearersTeam = transform.parent.parent.gameObject.GetComponent<CurrentTeam>();
         CurrentTeam shieldsTeam = this.GetComponent<CurrentTeam>();
         if (shieldbearersTeam != null && shieldsTeam != null)
         {
@@ -48,25 +44,13 @@ public class Shield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_playerInput.actions["Ability1"].ReadValue<float>() <= 0)
-        {
-            shieldUp = false;
-        }
-        else
-        {
-            shieldUp = true;
-        }
-        if (shieldUp && !pastShieldUp)
+        if (shieldUp)
         {
             transform.Find("ShieldVisual").gameObject.SetActive(true);
-            transform.localPosition = shieldUpPos;
-            pastShieldUp = true;
         }
-        else if (!shieldUp && pastShieldUp)
+        else if (!shieldUp)
         {
             transform.Find("ShieldVisual").gameObject.SetActive(false);
-            transform.localPosition = new Vector3(0, 100, 0);
-            pastShieldUp = false;
         }
     }
 }

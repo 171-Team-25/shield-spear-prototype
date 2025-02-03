@@ -120,8 +120,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab83797ce3100549b6e692295c8e806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  lifeTime: 2
+  speed: 20
+  lifeTime: 3
+  damage: 50
 --- !u!54 &-1332253596013248676
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -161,4 +162,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6301a95f7a87bf64d9f665231e19b392, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentTeamOn: 0
+  currentTeam: 0

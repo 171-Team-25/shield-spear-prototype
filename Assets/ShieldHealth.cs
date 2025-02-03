@@ -5,23 +5,19 @@ using UnityEngine.UI;
 
 public class ShieldHealth : Health
 {
-    [SerializeField] Text abilityDisplay;
-
     // Update is called once per frame
     void Update()
     {
         if (currentHealth <= 0)
         {
-            abilityDisplay.enabled = false;
-            this.gameObject.SetActive(false);
+            this.isDead = true;
             Invoke("Revive", 2);
         }
     }
 
     void Revive()
     {
-        abilityDisplay.enabled = true;
-        this.gameObject.SetActive(true);
+        this.isDead = false;
         currentHealth = baseHealth;
     }
 }

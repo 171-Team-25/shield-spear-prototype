@@ -759,7 +759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 901862705779412091}
-  speed: 10
+  speed: 17
   offenseCamera: {fileID: 3247215931657086225}
 --- !u!114 &5616537860721076988
 MonoBehaviour:
@@ -775,7 +775,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPool: {fileID: 561025259810148684}
   firePoint: {fileID: 4103277015631850418}
-  fireRate: 1
+  fireRate: 0.5
 --- !u!114 &6518936384971487702
 MonoBehaviour:
   m_ObjectHideFlags: 0

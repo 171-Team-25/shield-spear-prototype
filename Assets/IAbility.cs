@@ -6,6 +6,7 @@ public interface IAbility
     public event EventHandler<AbilityEventArgs> AbilityStarted;
     public event EventHandler<AbilityEventArgs> AbilityEnded;
     public void Activate();
+    public void Release();
     public AbilityActivationType GetActivationType();
     public AbilityUsageType GetUsageType();
     public AbilityEffect[] GetEffects();

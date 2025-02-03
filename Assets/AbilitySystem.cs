@@ -23,6 +23,9 @@ public class AbilitySystem : MonoBehaviour
         _playerInput.actions["Ability1"].performed += OnperformedAbility1;
         _playerInput.actions["Ability2"].performed += OnperformedAbility2;
         _playerInput.actions["Ability3"].performed += OnperformedAbility3;
+        _playerInput.actions["Ability1"].canceled += OncanceledAbility1;
+        _playerInput.actions["Ability2"].canceled += OncanceledAbility2;
+        _playerInput.actions["Ability3"].canceled += OncanceledAbility3;
         foreach (var ability in Abilities)
         {
             ability.AbilityStarted += OnAbilityStarted;
@@ -44,6 +47,19 @@ public class AbilitySystem : MonoBehaviour
     {
         UseAbility(2);
     }
+    
+    private void OncanceledAbility1(InputAction.CallbackContext obj)
+    {
+        releaseAbility(0);
+    }
+    private void OncanceledAbility2(InputAction.CallbackContext obj)
+    {
+        releaseAbility(1);
+    }
+    private void OncanceledAbility3(InputAction.CallbackContext obj)
+    {
+        releaseAbility(2);
+    }
 
     public bool UseAbility(int abilityIndex)
     {
@@ -62,6 +78,25 @@ public class AbilitySystem : MonoBehaviour
             effect.EffectEnded += OnEffectEnded;
         }        
         ability.Activate();
+        return true;
+    }
+
+    public bool releaseAbility(int abilityIndex) {
+        if (GetComponent<Health>().isDead) {
+            return false;
+        }
+        if (Abilities.Count <= abilityIndex)
+            return false;
+        var ability = Abilities[abilityIndex];
+        ability.AbilityStarted += OnAbilityStarted;
+        ability.AbilityEnded += OnAbilityEnded;
+        var effects = ability.GetEffects();
+        foreach (var effect in effects)
+        {
+            effect.EffectStarted += OnEffectStarted;
+            effect.EffectEnded += OnEffectEnded;
+        }        
+        ability.Release();
         return true;
     }
 
