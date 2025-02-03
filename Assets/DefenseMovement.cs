@@ -9,7 +9,8 @@ public class DefenseMovement : MonoBehaviour
     [SerializeField]
     Rigidbody body;
 
-    public float speed = 1;
+    public float baseSpeed = 1;
+    private float speed = 1;
     public Camera defenseCamera;
     private PlayerInput _playerInput;
 
@@ -21,11 +22,15 @@ public class DefenseMovement : MonoBehaviour
     public float TetherDistance { get => tetherDistance; set => tetherDistance = value; }
     public TetherIndicator Tether { get; set; }
 
+    public PlayerStats playerStats;
+
     // Start is called before the first frame update
     void Start()
     {
+        playerStats = GetComponent<PlayerStats>();
         body = GetComponent<Rigidbody>();
         _playerInput = GetComponent<PlayerInput>();
+        OnStatChanges();
     }
 
     // Update is called once per frame
@@ -94,5 +99,9 @@ public class DefenseMovement : MonoBehaviour
          force = Mathf.Min(force, maxTetherPullForce);
          body.velocity += direction * force;
          Debug.Log(distance + " " + force);
+     }
+
+     void OnStatChanges() {
+        speed = baseSpeed * playerStats.Movement;
      }
 }

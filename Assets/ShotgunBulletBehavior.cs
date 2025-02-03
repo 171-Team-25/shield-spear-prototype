@@ -30,7 +30,7 @@ public class ShotgunBulletBehavior : BulletBehavior
                         defenseMovement = other.gameObject.GetComponent<DefenseMovement>();
                         if (!defenseMovement.isBoosted) {
                             defenseMovement.isBoosted = true;
-                            defenseMovement.speed *= movementSpeedBoost;
+                            defenseMovement.baseSpeed *= movementSpeedBoost;
                             Invoke("RemoveBoost", boostDurationS);
                         }
                     }
@@ -49,6 +49,6 @@ public class ShotgunBulletBehavior : BulletBehavior
     }
     void RemoveBoost() { 
         defenseMovement.isBoosted = false;
-        defenseMovement.speed /= movementSpeedBoost;
+        defenseMovement.baseSpeed /= movementSpeedBoost;
     }
 }

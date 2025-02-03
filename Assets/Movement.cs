@@ -5,9 +5,12 @@ using UnityEngine.InputSystem;
 public class Movement : MonoBehaviour
 {
     [SerializeField] Rigidbody body;
-    [SerializeField] int speed = 1;
+    [SerializeField] int baseSpeed = 1;
+
+    private int speed = 1;
     [SerializeField] public Camera offenseCamera;
     private PlayerInput _playerInput;
+    private PlayerStats playerStats;
     // [SerializeField] private float tetherDistance = 100f;
     // [SerializeField] private float tetherPullForceFactor = 1f;
     // [SerializeField] private float maxTetherPullForce = 50f;
@@ -18,12 +21,14 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerStats = GetComponent<PlayerStats>();
         body = GetComponent<Rigidbody>();
         _playerInput = GetComponent<PlayerInput>();
         if (_playerInput == null)
         {
             Debug.Log("no player input");
         }
+        OnStatChanges();
     }
 
     // Update is called once per frame
@@ -66,6 +71,10 @@ public class Movement : MonoBehaviour
                 transform.rotation = Quaternion.LookRotation(new(dir.x, 0, dir.y));
             }
         }
+    }
+
+    void OnStatChanges() {
+        speed = (int)(baseSpeed * playerStats.Movement);
     }
 
     /*private void ApplyTether() {
