@@ -16,7 +16,7 @@ public class Health : MonoBehaviour
     private Color baseColor;
     public bool isDead = false;
     [SerializeField] float timeDeadS = 5f;
-    private PlayerStats playerStats;
+    protected PlayerStats playerStats;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +25,9 @@ public class Health : MonoBehaviour
             healthbar = transform.Find("HealthbarCanvas").gameObject.GetComponent<Healthbar>();
         }
         playerStats = GetComponent<PlayerStats>();
+        if (playerStats == null) {
+            playerStats = transform.parent.parent.GetComponent<PlayerStats>();
+        }
         HealthUpdated(playerStats.Health);
         currentHealth = maxHealth;
         if (gameObject.tag == "Defense") {

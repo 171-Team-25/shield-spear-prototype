@@ -10,9 +10,12 @@ public class BulletPool : MonoBehaviour
 
     private GameObject[] bulletPool;
 
+    private PlayerStats playerStats;
+
     // Start is called before the first frame update
     void Start()
     {
+        playerStats = transform.parent.GetComponent<PlayerStats>();
         if (bulletPrefab == null)
         {
             return;
@@ -52,6 +55,7 @@ public class BulletPool : MonoBehaviour
             if (!bullet.activeInHierarchy)
             {
                 bullet.SetActive(true);
+                bullet.GetComponent<BulletBehavior>().playerStats = playerStats;
                 return bullet;
             }
         }

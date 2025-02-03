@@ -761,6 +761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 901862705779412091}
   baseSpeed: 17
+  speed: 1
   offenseCamera: {fileID: 3247215931657086225}
 --- !u!114 &5616537860721076988
 MonoBehaviour:

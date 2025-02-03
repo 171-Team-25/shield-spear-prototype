@@ -7,7 +7,7 @@ public class Movement : MonoBehaviour
     [SerializeField] Rigidbody body;
     [SerializeField] int baseSpeed = 1;
 
-    private int speed = 1;
+    public int speed = 1;
     [SerializeField] public Camera offenseCamera;
     private PlayerInput _playerInput;
     private PlayerStats playerStats;

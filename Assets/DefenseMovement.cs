@@ -10,7 +10,7 @@ public class DefenseMovement : MonoBehaviour
     Rigidbody body;
 
     public float baseSpeed = 1;
-    private float speed = 1;
+    public float speed = 1;
     public Camera defenseCamera;
     private PlayerInput _playerInput;
 

@@ -1301,6 +1301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 8154782601543555960}
   baseSpeed: 12
+  speed: 1
   defenseCamera: {fileID: 8507331562549773993}
   isBoosted: 0
   tetherDistance: 10

@@ -30,7 +30,7 @@ public class ShotgunBulletBehavior : BulletBehavior
                         defenseMovement = other.gameObject.GetComponent<DefenseMovement>();
                         if (!defenseMovement.isBoosted) {
                             defenseMovement.isBoosted = true;
-                            defenseMovement.baseSpeed *= movementSpeedBoost;
+                            defenseMovement.speed *= movementSpeedBoost;
                             Invoke("RemoveBoost", boostDurationS);
                         }
                     }
@@ -39,7 +39,7 @@ public class ShotgunBulletBehavior : BulletBehavior
                 Health enemyHealth = other.gameObject.GetComponent<Health>();
                 if (enemyHealth != null)
                 {
-                    enemyHealth.takeDamage(damage);
+                    enemyHealth.takeDamage((int)(damage * playerStats.Damage));
                 }
                 resetBullet();
                 break;
@@ -49,6 +49,6 @@ public class ShotgunBulletBehavior : BulletBehavior
     }
     void RemoveBoost() { 
         defenseMovement.isBoosted = false;
-        defenseMovement.baseSpeed /= movementSpeedBoost;
+        defenseMovement.speed /= movementSpeedBoost;
     }
 }

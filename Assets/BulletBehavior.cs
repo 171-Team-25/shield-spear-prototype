@@ -9,6 +9,8 @@ public class BulletBehavior : MonoBehaviour
     [SerializeField]
     public float speed = 10f;
     private float baseSpeed;
+    public float baselifeTime = 2f;
+
     public float lifeTime = 2f;
 
     private float _lifeTimer;
@@ -16,6 +18,8 @@ public class BulletBehavior : MonoBehaviour
     private BulletPool bulletPool;
     public int damage = 50;
     private int baseDamage;
+
+    public PlayerStats playerStats;
 
     protected string[] TagsOfBulletReseters =
     {
@@ -32,7 +36,8 @@ public class BulletBehavior : MonoBehaviour
     {
         baseDamage = damage;
         baseSpeed = speed;
-        _lifeTimer = lifeTime;
+        OnStatChanges();
+        
     }
 
     // Update is called once per frame
@@ -82,13 +87,20 @@ public class BulletBehavior : MonoBehaviour
     protected void resetBullet()
     {
         bulletPool.ReturnBullet(gameObject);
+        lifeTime = baselifeTime * playerStats.Distance;
         _lifeTimer = lifeTime;
         speed = baseSpeed;
-        damage = baseDamage;
+        damage = (int)(baseDamage * playerStats.Damage);
     }
 
     public void SetPool(BulletPool pool)
     {
         bulletPool = pool;
+    }
+
+    public void OnStatChanges() {
+        lifeTime = baselifeTime * playerStats.Distance;
+        _lifeTimer = lifeTime;
+        damage = (int)(baseDamage * playerStats.Damage);
     }
 }
