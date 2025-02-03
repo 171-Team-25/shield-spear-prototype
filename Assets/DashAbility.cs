@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class DashAbility : MonoBehaviour, IAbility
 {
     public float dashDistance;
+
+    [SerializeField] private float baseDashDistance = 5f;
     public float dashDurationS;
     public readonly AbilityStats AbilityStats = new AbilityStats
     {
@@ -28,12 +30,15 @@ public class DashAbility : MonoBehaviour, IAbility
     public AbilityCooldown Cooldown;
 
     [SerializeField] Text abilityDisplay;
+    
+    private PlayerStats playerStats;
 
     public void Start()
     {
+        playerStats = GetComponent<PlayerStats>();
         _rigidbody = GetComponent<Rigidbody>();
         Cooldown = gameObject.AddComponent<AbilityCooldown>();
-        Cooldown.maxCooldown = AbilityStats.Cooldown;
+        OnStatChanges();
     }
 
     public void Activate()
@@ -97,5 +102,10 @@ public class DashAbility : MonoBehaviour, IAbility
     public void Release()
     {
         return;
+    }
+
+    void OnStatChanges() {
+        Cooldown.maxCooldown = AbilityStats.Cooldown / playerStats.Cooldown;
+        dashDistance = baseDashDistance * playerStats.Movement;
     }
 }

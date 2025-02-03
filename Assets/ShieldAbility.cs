@@ -39,9 +39,10 @@ public class ShieldAbility : MonoBehaviour, IAbility
     private GameObject shieldObject;
     private Shield shield;
     private ShieldHealth shieldHealth;
-
+    private PlayerStats playerStats;
     public void Start()
     {
+        playerStats = GetComponent<PlayerStats>();
         Cooldown = gameObject.AddComponent<AbilityCooldown>();
         Cooldown.maxCooldown = AbilityStats.Cooldown;
         shieldObject = Instantiate(shieldPrefab);
@@ -49,6 +50,7 @@ public class ShieldAbility : MonoBehaviour, IAbility
         shieldHealth = shieldObject.transform.Find("ShieldHitbox").GetComponent<ShieldHealth>();
         shieldObject.transform.SetParent(this.transform);
         shieldObject.transform.localPosition = Vector3.zero;
+        OnStatChanges();
     }
 
     public void Activate()
@@ -89,5 +91,10 @@ public class ShieldAbility : MonoBehaviour, IAbility
         if (abilityDisplay.enabled == false && !shieldHealth.isDead && !Cooldown.Running) {
             abilityDisplay.enabled = true;
         }
+    }
+
+    void OnStatChanges() {
+        shield.AreaSizeUpdated(playerStats.AreaSize);
+        shieldHealth.HealthUpdated(playerStats.Health);
     }
 }

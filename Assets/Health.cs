@@ -7,6 +7,7 @@ public class Health : MonoBehaviour
     [SerializeField]
     protected int baseHealth = 100;
     public int currentHealth;
+    public int maxHealth = 100;
 
     public bool IsWeakened = false;
 
@@ -15,6 +16,7 @@ public class Health : MonoBehaviour
     private Color baseColor;
     public bool isDead = false;
     [SerializeField] float timeDeadS = 5f;
+    private PlayerStats playerStats;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +24,9 @@ public class Health : MonoBehaviour
         if (transform.Find("HealthbarCanvas") != null) {
             healthbar = transform.Find("HealthbarCanvas").gameObject.GetComponent<Healthbar>();
         }
-        currentHealth = baseHealth;
+        playerStats = GetComponent<PlayerStats>();
+        HealthUpdated(playerStats.Health);
+        currentHealth = maxHealth;
         if (gameObject.tag == "Defense") {
             matRenderer = transform.Find("BodySize").gameObject.GetComponent<Renderer>();
         } else {
@@ -82,7 +86,6 @@ public class Health : MonoBehaviour
             GetComponent<Collider>().enabled = false;
             transform.Find("MeleeHitbox").GetComponent<MeleeAttack>().enabled = false;
             GetComponent<JumpToOffense>().enabled = false;
-            transform.Find("ShieldHitbox").GetComponent<Shield>().enabled = false;
             transform.Find("BoostNBlockHitbox").GetComponent<BlockNBoostWall>().enabled = false;
             transform.Find("WeaknessZoneHitbox").GetComponent<WeaknessZone>().enabled = false;
             transform.Find("KnockbackHitbox").GetComponent<KnockbackPunch>().enabled = false;
@@ -105,7 +108,6 @@ public class Health : MonoBehaviour
             GetComponent<Collider>().enabled = true;
             transform.Find("MeleeHitbox").GetComponent<MeleeAttack>().enabled = true;
             GetComponent<JumpToOffense>().enabled = true;
-            transform.Find("ShieldHitbox").GetComponent<Shield>().enabled = true;
             transform.Find("BoostNBlockHitbox").GetComponent<BlockNBoostWall>().enabled = true;
             transform.Find("WeaknessZoneHitbox").GetComponent<WeaknessZone>().enabled = true;
             transform.Find("KnockbackHitbox").GetComponent<KnockbackPunch>().enabled = true;
@@ -113,5 +115,13 @@ public class Health : MonoBehaviour
         if (healthbar != null) {
             healthbar.UpdateHealthBar(baseHealth, currentHealth);
         }
+    }
+
+    public void HealthUpdated(float Health) {
+        maxHealth = (int)(baseHealth * Health);
+    }
+
+    void OnStatChanges() {
+        HealthUpdated(playerStats.Health);
     }
 }

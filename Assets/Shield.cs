@@ -10,10 +10,12 @@ public class Shield : MonoBehaviour
     private BoxCollider boxCollider;
 
     [SerializeField]
-    float colliderHeight = 4f;
+    float baseColliderHeight = 4f;
 
     [SerializeField]
-    float colliderWidth = 5f;
+    float baseColliderWidth = 5f;
+    public float colliderHeight = 1f;
+    public float colliderWidth = 1f;
     private GameObject shieldVisual;
 
     public bool shieldUp = false;
@@ -33,6 +35,8 @@ public class Shield : MonoBehaviour
             shieldVisual.transform.localPosition = new Vector3(0, colliderHeight / 2 - 1, 0);
             shieldVisual.transform.localScale = new Vector3(colliderWidth, colliderHeight, 1);
         }
+                Debug.Log("area size start");
+
         CurrentTeam shieldbearersTeam = transform.parent.parent.gameObject.GetComponent<CurrentTeam>();
         CurrentTeam shieldsTeam = this.GetComponent<CurrentTeam>();
         if (shieldbearersTeam != null && shieldsTeam != null)
@@ -51,6 +55,25 @@ public class Shield : MonoBehaviour
         else if (!shieldUp)
         {
             transform.Find("ShieldVisual").gameObject.SetActive(false);
+        }
+    }
+
+    public void AreaSizeUpdated(float AreaSize) {
+        colliderHeight = baseColliderHeight * AreaSize;
+        colliderWidth = baseColliderWidth * AreaSize;
+        Debug.Log("area size " + AreaSize + " " + colliderHeight);
+        boxCollider = this.GetComponent<BoxCollider>();
+        if (boxCollider != null)
+        {
+            Debug.Log("area sized change hitbox");
+            boxCollider.size = new Vector3(colliderWidth, colliderHeight, 1);
+            boxCollider.center = new Vector3(0, colliderHeight / 2 - 1, 0);
+        }
+        shieldVisual = transform.Find("ShieldVisual").gameObject;
+        if (shieldVisual != null)
+        {
+            shieldVisual.transform.localPosition = new Vector3(0, colliderHeight / 2 - 1, 0);
+            shieldVisual.transform.localScale = new Vector3(colliderWidth, colliderHeight, 1);
         }
     }
 }

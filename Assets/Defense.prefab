@@ -1163,6 +1163,7 @@ GameObject:
   - component: {fileID: 5240138736660916969}
   - component: {fileID: 7585239064988347268}
   - component: {fileID: 7079174486329761791}
+  - component: {fileID: 7358484325144411520}
   m_Layer: 0
   m_Name: Defense
   m_TagString: Defense
@@ -1345,6 +1346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseHealth: 500
   currentHealth: 0
+  maxHealth: 0
   IsWeakened: 0
   isDead: 0
   timeDeadS: 5
@@ -1391,6 +1393,29 @@ MonoBehaviour:
   jumpDurationS: 0.1
   minimumDistanceToOffense: 3
   abilityDisplay: {fileID: 2539963233334440512}
+--- !u!114 &7358484325144411520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6628229698690515657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca34ef8885245646a861983b4757a2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackSpeed: 1
+  Cooldown: 1
+  Health: 1
+  AreaSize: 1
+  Healing: 1
+  Damage: 1
+  Special: 1
+  Movement: 1
+  MultiCast: 1
+  Seeking: 1
+  Distance: 1
 --- !u!1 &8175337644451211113
 GameObject:
   m_ObjectHideFlags: 0

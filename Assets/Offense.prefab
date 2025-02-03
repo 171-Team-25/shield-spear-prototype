@@ -618,6 +618,7 @@ GameObject:
   - component: {fileID: 4616043717265165246}
   - component: {fileID: 8345497779286578857}
   - component: {fileID: 1743507545244890431}
+  - component: {fileID: 8011570969966184256}
   m_Layer: 0
   m_Name: Offense
   m_TagString: Offense
@@ -870,6 +871,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashDistance: 5
+  baseDashDistance: 5
   dashDurationS: 0.1
   abilityDisplay: {fileID: 3024989515124550494}
 --- !u!114 &7376713366488813659
@@ -937,9 +939,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseHealth: 300
   currentHealth: 0
+  maxHealth: 0
   IsWeakened: 0
   isDead: 0
   timeDeadS: 5
+--- !u!114 &8011570969966184256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3325478105745935182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca34ef8885245646a861983b4757a2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackSpeed: 1
+  Cooldown: 1
+  Health: 1
+  AreaSize: 1
+  Healing: 1
+  Damage: 1
+  Special: 1
+  Movement: 1
+  MultiCast: 1
+  Seeking: 1
+  Distance: 1
 --- !u!1 &3337884455848539593
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,6 +18,6 @@ public class ShieldHealth : Health
     void Revive()
     {
         this.isDead = false;
-        currentHealth = baseHealth;
+        currentHealth = maxHealth;
     }
 }
