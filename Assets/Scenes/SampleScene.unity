@@ -176,6 +176,63 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8678823145569952518, guid: bd828f28f51cdb543ab7af63eaadd6f1, type: 3}
+--- !u!1001 &243689199
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1221203743049987267, guid: 7b91fabb08332e543a742db6dbd13996, type: 3}
+      propertyPath: m_Name
+      value: HealingGrove (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277362790823318336, guid: 7b91fabb08332e543a742db6dbd13996, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277362790823318336, guid: 7b91fabb08332e543a742db6dbd13996, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277362790823318336, guid: 7b91fabb08332e543a742db6dbd13996, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277362790823318336, guid: 7b91fabb08332e543a742db6dbd13996, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277362790823318336, guid: 7b91fabb08332e543a742db6dbd13996, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277362790823318336, guid: 7b91fabb08332e543a742db6dbd13996, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277362790823318336, guid: 7b91fabb08332e543a742db6dbd13996, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277362790823318336, guid: 7b91fabb08332e543a742db6dbd13996, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277362790823318336, guid: 7b91fabb08332e543a742db6dbd13996, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277362790823318336, guid: 7b91fabb08332e543a742db6dbd13996, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7b91fabb08332e543a742db6dbd13996, type: 3}
 --- !u!1 &256954445 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2045257923548263128, guid: bd828f28f51cdb543ab7af63eaadd6f1, type: 3}
@@ -559,6 +616,63 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3329902420748629119, guid: bd828f28f51cdb543ab7af63eaadd6f1, type: 3}
+--- !u!1001 &1209777028
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1221203743049987267, guid: 7b91fabb08332e543a742db6dbd13996, type: 3}
+      propertyPath: m_Name
+      value: HealingGrove
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277362790823318336, guid: 7b91fabb08332e543a742db6dbd13996, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277362790823318336, guid: 7b91fabb08332e543a742db6dbd13996, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277362790823318336, guid: 7b91fabb08332e543a742db6dbd13996, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277362790823318336, guid: 7b91fabb08332e543a742db6dbd13996, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277362790823318336, guid: 7b91fabb08332e543a742db6dbd13996, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277362790823318336, guid: 7b91fabb08332e543a742db6dbd13996, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277362790823318336, guid: 7b91fabb08332e543a742db6dbd13996, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277362790823318336, guid: 7b91fabb08332e543a742db6dbd13996, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277362790823318336, guid: 7b91fabb08332e543a742db6dbd13996, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277362790823318336, guid: 7b91fabb08332e543a742db6dbd13996, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7b91fabb08332e543a742db6dbd13996, type: 3}
 --- !u!1001 &1343947695
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -964,3 +1078,5 @@ SceneRoots:
   - {fileID: 1530925621}
   - {fileID: 397233987}
   - {fileID: 2034140397}
+  - {fileID: 1209777028}
+  - {fileID: 243689199}

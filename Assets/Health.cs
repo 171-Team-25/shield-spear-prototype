@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -64,6 +65,14 @@ public class Health : MonoBehaviour
         }
         Debug.Log(this + "takes " + damage + " damage");
         currentHealth -= damage;
+        if (healthbar != null) {
+            healthbar.UpdateHealthBar(baseHealth, currentHealth);
+        }
+    }
+
+    public void getHealed(int healing) {
+        Debug.Log(this + " is healed " + healing + " health");
+        currentHealth = Math.Min(maxHealth, currentHealth + healing);
         if (healthbar != null) {
             healthbar.UpdateHealthBar(baseHealth, currentHealth);
         }
