@@ -126,6 +126,9 @@ MonoBehaviour:
   IsWeakened: 0
   isDead: 0
   timeDeadS: 2
+  arcHeight: 10
+  duration: 1
+  distance: 15
 --- !u!54 &6816609406303689582
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -11,7 +11,8 @@ public class ExplosionPlantHealth : Health
 
     public float arcHeight = 2f;
     public float duration = 1f;
-
+    
+    public float distance = 15f;
     protected string[] TagsOfExplosionHittables =
     {
         "Offense",
@@ -100,9 +101,29 @@ public class ExplosionPlantHealth : Health
             blasted.GetComponent<Rigidbody>().velocity = UnityEngine.Vector3.zero;
             defenseMovement.enabled = false;
         }
+        Collider blastedCollider = blasted.GetComponent<Collider>();
+        blastedCollider.enabled = false;
 
-        yield return new WaitForSeconds(2f);
+        UnityEngine.Vector3 start = blasted.transform.position;
+        UnityEngine.Vector3 end = start + ((start - transform.position).normalized * distance);
+        //new UnityEngine.Vector3(0,1,0);
 
+        float elapsedTime = 0f;
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / duration;
+            UnityEngine.Vector3 position = UnityEngine.Vector3.Lerp(start, end, t);
+
+            position.y += arcHeight * Mathf.Sin(t * Mathf.PI);
+
+            blasted.transform.position = position;
+            yield return null;
+        }
+
+        blasted.transform.position = end;
+
+        blastedCollider.enabled = true;
         if (blasted.TryGetComponent<Movement>(out var movement2))
         {
             movement2.enabled = true;
