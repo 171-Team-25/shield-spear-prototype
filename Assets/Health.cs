@@ -13,10 +13,10 @@ public class Health : MonoBehaviour
     public bool IsWeakened = false;
 
     private Healthbar healthbar;
-    private Renderer matRenderer;
-    private Color baseColor;
+    protected Renderer matRenderer;
+    protected Color baseColor;
     public bool isDead = false;
-    [SerializeField] float timeDeadS = 5f;
+    [SerializeField] protected float timeDeadS = 5f;
     protected PlayerStats playerStats;
 
     // Start is called before the first frame update
@@ -78,7 +78,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    void Die() {
+    protected void Die() {
         isDead = true;
         if (matRenderer != null) {
             Color newColor = Color.red;

@@ -28,6 +28,7 @@ public class Shield : MonoBehaviour
         {
             boxCollider.size = new Vector3(colliderWidth, colliderHeight, 1);
             boxCollider.center = new Vector3(0, colliderHeight / 2 - 1, 0);
+            boxCollider.enabled = false;
         }
         shieldVisual = transform.Find("ShieldVisual").gameObject;
         if (shieldVisual != null)
